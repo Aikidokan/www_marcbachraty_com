@@ -1,0 +1,122 @@
+﻿@using MarcBachraty.LocalResource
+@model MarcBachraty.Models.ContactViewModel
+
+@{
+    var model = @Model;
+    var noA = model.NoA;
+    var noB = model.NoB;
+}
+<style>
+        /* Styles for validation helpers
+    -----------------------------------------------------------*/
+        .field-validation-error {
+            color: #ff0000;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        .input-validation-error {
+            border: 1px solid #ff0000;
+            background-color: #ffeeee;
+        }
+
+        .validation-summary-errors {
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+</style>
+<div id="responsediv" class="c-form-response"></div>
+
+
+	@using (Ajax.BeginForm("HandleContactForm", "Contact", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "responsediv",
+        OnFailure = "onError(xhr)",
+        OnSuccess = "onSuccess(data)"
+    }))
+    {
+
+		@Html.ValidationSummary("contactModel", true)
+        @Html.AntiForgeryToken()
+	<fieldset class="c-input-wrapper">
+
+		<div>
+			@Html.EditorFor(m => model.ContactReason, new { placeholder = forms.contactreason, @class = "sticky" })
+
+		</div>
+		<div>
+			@Html.TextBoxFor(m => model.FirstName, new { placeholder = forms.firstname, @class = "sticky" })
+			@Html.ValidationMessageFor(m => model.FirstName)
+			@Html.TextBoxFor(m => model.SurName, new { placeholder = forms.surname, @class = "sticky" })
+			@Html.ValidationMessageFor(m => model.FirstName)
+		</div>
+		<div>@Html.TextBoxFor(m => model.Street, new { placeholder = forms.street, @class = "sticky" })</div>
+		<div>
+
+			@Html.TextBoxFor(m => model.Zip, new { placeholder = forms.zip, @class = "sticky" }) @Html.TextBoxFor(m => model.City, new { placeholder = forms.city, @class = "sticky" })
+
+		</div>
+		<div>
+
+			@Html.TextBoxFor(m => model.Email, new { placeholder = forms.email, @class = "sticky" })
+			@Html.ValidationMessageFor(m => model.Dojo)
+		</div>
+		<div>
+
+			@Html.TextBoxFor(m => model.Dojo, new { placeholder = forms.dojo, @class = "sticky" })
+
+		</div>
+		<div>
+
+			@Html.TextBoxFor(m => model.Website, new { placeholder = forms.website, @class = "sticky" })
+
+		</div>
+
+		<div>
+			@Html.TextBoxFor(m => model.Phone, new { placeholder = forms.phone, @class = "sticky" })
+
+		</div>
+	    <div>
+	        @Html.TextAreaFor(m => model.Comments, new {placeholder = forms.comments, @class = "sticky"})
+
+	    </div>
+        <div>Add @noA with @noB and type the result below
+            @Html.TextBoxFor(m => model.CaptchaCheck, new {  @class = "sticky" })
+            @Html.ValidationMessageFor(m => model.CaptchaCheck)
+        </div>
+        @Html.HiddenFor(m=>model.NoA)
+        @Html.HiddenFor(m=>model.NoB)
+		<button>@forms.btnsend</button>
+	</fieldset>
+	}
+
+
+	<script>
+        var onSuccess = function (data) {
+		$("#target").removeClass();
+		$('#responsediv').delay(300).slideDown();
+            $('#responsediv').append(data.MessageHeader + data.Message);
+		$('#form0').slideUp();
+		$("#target").addClass("alert alert-success");
+        console.log(data);
+	};
+
+	var onError = function (data) {
+	    $("#status").removeClass();
+	    $('#responsediv').append(xhr.responseText);
+	    
+		$("#status").addClass("alert alert-error");
+		$("#status").html("<strong>Error!</strong> There was an error posting the contact form. Please try again later.");
+	}
+
+
+</script>

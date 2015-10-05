@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\UmbracoCms.7.2.8\build\UmbracoCms.props" Condition="Exists('packages\UmbracoCms.7.2.8\build\UmbracoCms.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{02193F18-897E-484D-86A4-B7AC28BF7FAC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MarcBachraty</RootNamespace>
+    <AssemblyName>MarcBachraty</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Analytics">
+      <HintPath>packages\Analytics.Umbraco.1.2.0\lib\net45\Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="businesslogic, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\businesslogic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClientDependency.Core, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ClientDependency.1.8.4\lib\net45\ClientDependency.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core.Mvc, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ClientDependency-Mvc5.1.8.0.0\lib\net45\ClientDependency.Core.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="cms, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\cms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="controls, Version=1.0.5675.23470, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="DDay.iCal, Version=1.0.2.575, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DDay.iCal.1.0.2.575\lib\DDay.iCal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Examine, Version=0.1.65.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Examine.0.1.65.0\lib\Examine.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageProcessor">
+      <HintPath>packages\ImageProcessor.1.9.5.0\lib\ImageProcessor.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageProcessor.Web, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ImageProcessor.Web.3.3.1.0\lib\net45\ImageProcessor.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Imazen.SlimResponse">
+      <HintPath>packages\Imazen.SlimResponse.0.2.4936.26457\lib\net40\Imazen.SlimResponse.dll</HintPath>
+    </Reference>
+    <Reference Include="interfaces, Version=1.0.5675.23466, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.1559.20655, Culture=neutral">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RJP.MultiUrlPicker, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\RJP.UmbracoMultiUrlPicker.1.3.1\lib\net45\RJP.MultiUrlPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleFeedReader, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SimpleFeedReader.1.0.4.0\lib\net40-client\SimpleFeedReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Skybrud.Social">
+      <HintPath>packages\Skybrud.Social.0.9.0\lib\Skybrud.Social.dll</HintPath>
+    </Reference>
+    <Reference Include="Skybrud.Umbraco.RssUtils">
+      <HintPath>packages\Skybrud.Umbraco.RssUtils.1.0.3\lib\Skybrud.Umbraco.RssUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Slimsy, Version=1.1.4.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Our.Umbraco.Slimsy.1.1.4\lib\net45\Slimsy.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLCE4Umbraco, Version=1.0.5675.23469, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\SQLCE4Umbraco.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TidyNet, Version=1.0.0.0, Culture=neutral">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\TidyNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="umbraco, Version=1.0.5675.23471, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\umbraco.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Umbraco.Core, Version=1.0.5675.23466, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\Umbraco.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="umbraco.DataLayer, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\umbraco.DataLayer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="umbraco.editorControls, Version=1.0.5675.23472, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\umbraco.editorControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="umbraco.MacroEngines, Version=1.0.5675.23472, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\umbraco.MacroEngines.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="umbraco.providers, Version=1.0.5675.23470, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\umbraco.providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Umbraco.Web.UI, Version=1.0.5675.23473, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\Umbraco.Web.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UmbracoExamine, Version=0.7.0.23469, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\UmbracoExamine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\UmbracoCms.Core.7.2.8\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Browser.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Country.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Dashboard.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Device.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Ecommerce.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Edit.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Keyword.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Language.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\OS.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\PageViews.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\ProductPerformance.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\SalesPerformance.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\ScreenRes.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Settings.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Social.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\Transaction.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\controllers\View.Controller.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\directives\DateRangePicker.Directive.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\edit.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\filters\currency.filter.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\browser.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\country.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\dashboard.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\devices.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\ecommerce.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\keywords.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\language.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\os.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\productperformance.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\salesperformance.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\screenres.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\settings.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\social.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\transactions.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\partials\views.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\resources\Settings.Resource.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\resources\Stats.Resource.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\services\DateRange.Service.js" />
+    <Content Include="App_Plugins\Analytics\backOffice\AnalyticsTree\view.html" />
+    <Content Include="App_Plugins\Analytics\backOffice\OAuth.aspx" />
+    <Content Include="App_Plugins\Analytics\backOffice\OAuthCallback.aspx" />
+    <Content Include="App_Plugins\Analytics\config\lang\da.xml" />
+    <Content Include="App_Plugins\Analytics\config\lang\en.xml" />
+    <Content Include="App_Plugins\Analytics\config\lang\en_us.xml" />
+    <Content Include="App_Plugins\Analytics\css\analytics.css" />
+    <Content Include="App_Plugins\Analytics\installer\PostInstall.ascx" />
+    <Content Include="App_Plugins\Analytics\lib\accountingjs\accounting.js" />
+    <Content Include="App_Plugins\Analytics\lib\accountingjs\accounting.min.js" />
+    <Content Include="App_Plugins\Analytics\lib\angles\angles.js" />
+    <Content Include="App_Plugins\Analytics\lib\angular-chartjs\angular-chartjs.js" />
+    <Content Include="App_Plugins\Analytics\lib\angular-tablesort\angular-tablesort.js" />
+    <Content Include="App_Plugins\Analytics\lib\angular-tablesort\tablesort.css" />
+    <Content Include="App_Plugins\Analytics\lib\chartjs\Chart.js" />
+    <Content Include="App_Plugins\Analytics\lib\chartjs\Chart.min.js" />
+    <Content Include="App_Plugins\Analytics\lib\daterangepicker\daterangepicker-bs2.css" />
+    <Content Include="App_Plugins\Analytics\lib\daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="App_Plugins\Analytics\lib\daterangepicker\daterangepicker.js" />
+    <Content Include="App_Plugins\Analytics\lib\momentjs\moment-with-langs.js" />
+    <Content Include="App_Plugins\Analytics\lib\momentjs\moment-with-langs.min.js" />
+    <Content Include="App_Plugins\Analytics\lib\momentjs\moment.js" />
+    <Content Include="App_Plugins\Analytics\lib\momentjs\moment.min.js" />
+    <Content Include="App_Plugins\GMaps\GMaps.controller.js" />
+    <Content Include="App_Plugins\GMaps\GMaps.html" />
+    <Content Include="App_Plugins\GMaps\package.xml" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.html" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.js" />
+    <Content Include="config\grid.editors.config.js" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\font\fontawesome-webfont.svg" />
+    <Content Include="css\images\highlight.png" />
+    <Content Include="css\images\icons-contact.png" />
+    <Content Include="css\images\icons-meta.png" />
+    <Content Include="css\images\icons-special.png" />
+    <Content Include="css\images\mobileUI-site-nav-opener-bg.svg" />
+    <Content Include="css\images\overlay.png" />
+    <Content Include="css\images\toggle.svg" />
+    <Content Include="css\lightbox.css" />
+    <Content Include="css\skel-noscript.css" />
+    <Content Include="css\style-1000px.css" />
+    <Content Include="css\style-desktop.css" />
+    <Content Include="css\style-mobile.css" />
+    <Content Include="css\style.css" />
+    <Content Include="default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\assets\FacebookPost.png" />
+    <Content Include="images\assets\UmbracoEvent.png" />
+    <Content Include="images\header_marc_throws.jpg" />
+    <Content Include="images\mobileUI-site-nav-opener-bg.svg" />
+    <Content Include="images\mobileUI-site-nav.svg" />
+    <Content Include="js\config.js" />
+    <Content Include="js\jquery.carouFredSel-6.2.1.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="images\header.jpg" />
+    <Content Include="images\pic01.jpg" />
+    <Content Include="images\pic02.jpg" />
+    <Content Include="images\pic03.jpg" />
+    <Content Include="images\pic04.jpg" />
+    <Content Include="js\html5shiv.js" />
+    <Content Include="js\init.js" />
+    <Content Include="js\skel-panels.min.js" />
+    <Content Include="js\skel.min.js" />
+    <Content Include="scripts\EventCalendar\fullcalendar.min.js" />
+    <Content Include="scripts\EventCalendar\gcal.js" />
+    <Content Include="scripts\EventCalendar\jquery-1.9.1.min.js" />
+    <Content Include="scripts\EventCalendar\lang-all.js" />
+    <Content Include="scripts\EventCalendar\moment.min.js" />
+    <Content Include="scripts\Imagelightbox.min.js" />
+    <None Include="scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="scripts\jquery-1.8.0.js" />
+    <Content Include="scripts\jquery-1.8.0.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\slick\ajax-loader.gif" />
+    <Content Include="scripts\slick\fonts\slick.svg" />
+    <Content Include="scripts\slick\slick.css" />
+    <Content Include="scripts\slick\slick.js" />
+    <Content Include="scripts\slick\slick.min.js" />
+    <Content Include="scripts\Slimmage.js" />
+    <Content Include="scripts\slimmage.settings.js" />
+    <Content Include="slick\ajax-loader.gif" />
+    <Content Include="slick\fonts\slick.svg" />
+    <Content Include="slick\slick-theme.css" />
+    <Content Include="slick\slick.css" />
+    <Content Include="slick\slick.js" />
+    <Content Include="slick\slick.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\CacheHelper.cs" />
+    <Compile Include="Classes\CallResponses.cs" />
+    <Compile Include="Classes\FB\FeedReader.cs" />
+    <Compile Include="Classes\TypeOfContent.cs" />
+    <Compile Include="Classes\FB\entryAuthor.cs" />
+    <Compile Include="Classes\FB\entryContent.cs" />
+    <Compile Include="Classes\FB\entryLink.cs" />
+    <Compile Include="Classes\FB\entry.cs" />
+    <Compile Include="Classes\FB\SliderEvent.cs" />
+    <Compile Include="Classes\PlmHelpers.cs" />
+    <Compile Include="Controllers\BaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\FbController.cs" />
+    <Compile Include="Controllers\ICSSurfaceController.cs" />
+    <Compile Include="LocalResource\Errors.fr-FR.Designer.cs">
+      <DependentUpon>Errors.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LocalResource\Errors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalResource\forms.fr-FR.Designer.cs">
+      <DependentUpon>forms.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="LocalResource\forms.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>forms.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Plugins\GMaps\GMapsLocation.cs" />
+    <Compile Include="App_Plugins\GMaps\GMapsValueConverter.cs" />
+    <Compile Include="Classes\CultureHelper.cs" />
+    <Compile Include="Classes\EmailGateway.cs" />
+    <Compile Include="Classes\Global.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Views\Web.config" />
+    <Content Include="macroScripts\Web.config" />
+    <Content Include="config\ClientDependency.config" />
+    <Content Include="css\font\fontawesome-webfont.eot" />
+    <Content Include="css\font\fontawesome-webfont.ttf" />
+    <Content Include="css\font\fontawesome-webfont.woff" />
+    <Content Include="css\font\FontAwesome.otf" />
+    <Content Include="js\jquery.touchSwipe.min.js" />
+    <Content Include="js\jquery-1.10.2.min.map" />
+    <Content Include="App_Plugins\GMaps\package.manifest" />
+    <Content Include="config\trees.config" />
+    <Content Include="config\Dashboard.config" />
+    <Content Include="config\applications.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\package.manifest" />
+    <Content Include="config\UrlRewriting.config" />
+    <Content Include="config\umbracoSettings.config" />
+    <Content Include="config\tinyMceConfig.config" />
+    <Content Include="config\scripting.config" />
+    <Content Include="config\metablogConfig.config" />
+    <Content Include="config\log4net.config" />
+    <Content Include="config\FileSystemProviders.config" />
+    <Content Include="config\feedProxy.config" />
+    <Content Include="config\ExamineSettings.config" />
+    <Content Include="config\ExamineIndex.config" />
+    <Content Include="config\EmbeddedMedia.config" />
+    <Content Include="config\BaseRestExtensions.config" />
+    <Content Include="config\404handlers.config" />
+    <Content Include="App_Plugins\Analytics\settings.config" />
+    <Content Include="App_Plugins\Analytics\profile.config" />
+    <Content Include="App_Plugins\Analytics\package.manifest" />
+    <Content Include="App_Plugins\Analytics\account.config" />
+    <EmbeddedResource Include="LocalResource\Errors.fr-FR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalResource\Errors.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalResource\forms.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>forms.fr-FR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalResource\forms.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>forms.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Documentation.chm" />
+    <None Include="Properties\PublishProfiles\Prod.pubxml" />
+    <Content Include="Views\shared\umbAbout.cshtml" />
+    <Content Include="Views\shared\_seminarSlider.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\shared\_banner.cshtml" />
+    <Content Include="Views\shared\umbLatestNewsWidget.cshtml" />
+    <Content Include="Views\shared\umbNewsOverviewWidget.cshtml" />
+    <Content Include="Views\shared\_Social.cshtml" />
+    <Content Include="Views\shared\umbTopNavigation.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\umbHomePage.cshtml" />
+    <Content Include="Views\umbLayout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\umbNewsItem.cshtml" />
+    <Content Include="Views\umbNewsOverview.cshtml" />
+    <Content Include="Views\umbTextPage.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\SeminarsOverview.cshtml" />
+    <Content Include="Views\MacroPartials\ContactCard.cshtml" />
+    <Content Include="Views\SingleSeminar.cshtml" />
+    <Content Include="Views\MacroPartials\YoutubeClip.cshtml" />
+    <Content Include="Views\MediaPage.cshtml" />
+    <Content Include="Views\MacroPartials\MediaGrid2.cshtml" />
+    <Content Include="Views\MacroPartials\Gallerysubmenu.cshtml" />
+    <Content Include="scripts\slick\config.rb" />
+    <Content Include="scripts\slick\fonts\slick.eot" />
+    <Content Include="scripts\slick\fonts\slick.ttf" />
+    <Content Include="scripts\slick\fonts\slick.woff" />
+    <Content Include="scripts\slick\slick.scss" />
+    <Content Include="Views\shared\_contactForm.cshtml" />
+    <Content Include="Views\Partials\umbAbout.cshtml" />
+    <Content Include="Views\Partials\umbFeatures.cshtml" />
+    <Content Include="Views\Partials\umbHomepageBanner.cshtml" />
+    <Content Include="Views\Partials\umbLatestNewsWidget.cshtml" />
+    <Content Include="Views\Partials\umbNewsOverviewWidget.cshtml" />
+    <Content Include="Views\Partials\umbSocial.cshtml" />
+    <Content Include="Views\Partials\umbTopNavigation.cshtml" />
+    <Content Include="Views\Contact.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Media.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Macro.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Embed.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="slick\config.rb" />
+    <Content Include="slick\fonts\slick.eot" />
+    <Content Include="slick\fonts\slick.ttf" />
+    <Content Include="slick\fonts\slick.woff" />
+    <Content Include="slick\slick-theme.scss" />
+    <Content Include="slick\slick.scss" />
+    <Content Include="Views\shared\_StartSpots.cshtml" />
+    <Content Include="Views\shared\_UpcomingSeminars.cshtml" />
+    <Content Include="Views\shared\EditorTemplates\_DDRegarding.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="xslt\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="masterpages\" />
+    <Folder Include="media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57430</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://local.marc.com</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('packages\UmbracoCms.7.2.8\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\UmbracoCms.7.2.8\build\UmbracoCms.props'))" />
+    <Error Condition="!Exists('packages\UmbracoCms.7.2.8\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\UmbracoCms.7.2.8\build\UmbracoCms.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="packages\UmbracoCms.7.2.8\build\UmbracoCms.targets" Condition="Exists('packages\UmbracoCms.7.2.8\build\UmbracoCms.targets')" />
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

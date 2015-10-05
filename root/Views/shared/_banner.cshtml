@@ -1,0 +1,20 @@
+﻿@using System.Globalization
+@using System.Threading
+@inherits UmbracoTemplatePage
+@{
+    var homePage = CurrentPage.AncestorsOrSelf(1).First();
+}
+
+    <div id="header" style="position: relative; background: url('@Umbraco.Media(homePage.bannerBackgroundImage.ToString()).umbracoFile') no-repeat center center; background-size: cover; text-align: right;">
+        @{ Html.RenderPartial("umbTopNavigation"); }
+
+        <div class="container">
+
+            <!-- Logo -->
+            <div id="logo">
+                <a href="@Umbraco.Content(homePage.bannerLink.ToString()).Url">@homePage.bannerHeader</a>
+                <span class="tag">@homePage.bannerSubheader</span>
+            </div>
+        </div>
+    </div>
+   

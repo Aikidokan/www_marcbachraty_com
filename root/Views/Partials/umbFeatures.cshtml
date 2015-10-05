@@ -1,0 +1,143 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    // Model.Content is the current page that we're on
+    // AncestorsOrSelf is all of the ancestors this page has in the tree
+    // (1) means: go up to level 1 and stop looking for more ancestors when you get there
+    // First() gets the first ancestor found (the home page, on level 1)
+    var homePage = CurrentPage.AncestorsOrSelf(1).First();
+}
+
+<!-- /Features -->
+<!-- Featured -->
+
+
+<!-- Main -->
+<div id="main">
+    <div id="content" class="container">
+        <div class="row carouselSeminars">
+            @*<div id="carouselSeminars">*@
+
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic01.jpg" alt=""></a>
+                <header>
+                    <h2>1</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+                <header>
+                    <h2>2</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+                <header>
+                    <h2>Mauris vulputate dolor</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic01.jpg" alt=""></a>
+                <header>
+                    <h2>Mauris vulputate dolor</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+                <header>
+                    <h2>sdfghdsfgsdfgsdfg</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+            <section class="4u">
+                <a href="#" class="image full"><img src="images/pic02.jpg" alt=""></a>
+                <header>
+                    <h2>Mauris vulputate dolor</h2>
+                </header>
+                <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+            </section>
+
+            @*</div>*@
+        </div>
+            @*<div class="row">
+                <section class="6u">
+                    <a href="#" class="image full"><img src="images/pic03.jpg" alt=""></a>
+                    <header>
+                        <h2>Mauris vulputate dolor</h2>
+                    </header>
+                    <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                </section>
+                <section class="6u">
+                    <a href="#" class="image full"><img src="images/pic04.jpg" alt=""></a>
+                    <header>
+                        <h2>Mauris vulputate dolor</h2>
+                    </header>
+                    <p>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum.</p>
+                </section>
+            </div>*@
+
+        </div>
+</div>
+<div id="featured">
+    <div class="container">
+        <div class="row">
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-briefcase"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-lock"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec magna.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
+            <section class="4u">
+                <span class="pennant"><span class="fa fa-globe"></span></span>
+                <h3>Maecenas luctus lectus</h3>
+                <p>Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo.</p>
+                <a href="#" class="button button-style1">Read More</a>
+            </section>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.carouFredSel-6.2.1.js"></script>
+<script type="text/javascript" src="/js/jquery.touchSwipe.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Using default configuration
+        $('.carouselSeminars').carouFredSel();
+
+        // Using custom configuration
+        $('.carouselSeminars').carouFredSel({
+            items: 3,
+            circular: true,         // Determines whether the carousel should be circular.
+            infinite: true,         // Determines whether the carousel should be infinite. Note: It is possible to create a non-circular, infinite carousel, but it is not possible to create a circular, non-infinite carousel.
+            responsive: true,      // Determines whether the carousel should be responsive. If true, the items will be resized to fill the carousel.
+            direction: "left",      // The direction to scroll the carousel. Possible values: "right", "left", "up" or "down".
+            width: null,            // The width of the carousel. Can be null (width will be calculated), a number, "variable" (automatically resize the carousel when scrolling items with variable widths), "auto" (measure the widest item) or a percentage like "100%" (only applies on horizontal carousels)
+            height: null,           // The height of the carousel. Can be null (width will be calculated), a number, "variable" (automatically resize the carousel when scrolling items with variable heights), "auto" (measure the tallest item) or a percentage like "100%" (only applies on vertical carousels)
+            align: "center",        // Whether and how to align the items inside a fixed width/height. Possible values: "center", "left", "right" or false.
+            padding: null,          // Padding around the carousel (top, right, bottom and left). For example: [10, 20, 30, 40] (top, right, bottom, left) or [0, 50] (top/bottom, left/right).
+            synchronise: null,      // Selector and options for the carousel to synchronise: [string selector, boolean inheritOptions, boolean sameDirection, number deviation] For example: ["#foo2", true, true, 0]
+            cookie: false,          // Determines whether the carousel should start at its last viewed position. The cookie is stored until the browser is closed. Can be a string to set a specific name for the cookie to prevent multiple carousels from using the same cookie.
+            onCreate: null,          // Function that will be called after the carousel has been created. Receives a map of all data.
+            scroll: {
+                items: 1,
+                easing: "elastic",
+                duration: 1000,
+                pauseOnHover: true
+            },
+            swipe: {
+                onTouch: true
+            }
+        });
+    });
+</script>

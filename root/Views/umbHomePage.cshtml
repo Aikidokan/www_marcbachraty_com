@@ -1,0 +1,12 @@
+@inherits UmbracoTemplatePage
+@{
+    Layout = "umbLayout.cshtml";
+}
+@{ Html.RenderPartial("_banner"); }
+
+<div id="main">
+    <div id="content" class="container">
+        @{   Html.RenderPartial("_seminarSlider"); }
+    </div>
+</div>
+@{   Html.RenderPartial("_startSpots"); }

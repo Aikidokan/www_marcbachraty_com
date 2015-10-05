@@ -1,0 +1,48 @@
+﻿@inherits UmbracoTemplatePage
+
+@*
+    position: relative; background: url('@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile') no-repeat bottom center; background-size: cover;text-align: center;
+
+    @{
+        var homePage = CurrentPage.AncestorsOrSelf(1).First();
+      }
+        @if (homePage.startpageBannerLocation != null)
+        {
+    <div id="banners">
+            @foreach (dynamic puff in Umbraco.Content(Convert.ToInt32(CurrentPage.startpageBannerLocation)).Children.Where("Visible").OrderBy("sortOrder").Take(3))
+            {*@
+@{
+    var homePage = CurrentPage.AncestorsOrSelf(1).First();
+}
+    <div id="header" style="position: relative; background: url('@Umbraco.Media(homePage.bannerBackgroundImage.ToString()).umbracoFile') no-repeat center center; background-size: cover; text-align: center;">
+        @{ Html.RenderPartial("umbTopNavigation"); }
+
+        <div class="container">
+
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="@Umbraco.Content(homePage.bannerLink.ToString()).Url">@homePage.bannerHeader</a></h1>
+                <span class="tag">@homePage.bannerSubheader</span>
+            </div>
+        </div>
+    </div>
+    @*}
+            <div class="progress-bar"></div>
+        </div>
+            <script type="text/javascript" src="/js/jquery.carouFredSel-6.2.1.js"></script>
+
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#banners').carouFredSel({
+                        scroll: {
+                            items: 1,
+                            duration: 1000
+                        },
+                        auto: {
+                            progress: ".progress-bar"
+                        }
+
+                    });
+                });
+            </script>*@
+

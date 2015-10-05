@@ -1,0 +1,54 @@
+﻿@using System.Globalization
+@inherits UmbracoTemplatePage
+@{
+    Layout = "umbLayout.cshtml";
+
+    // If the editor has not explicitly provided the "Page title" property page
+    // then just show the name of the page otherwise show the provided title
+    var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
+        ? CurrentPage.Name
+        : CurrentPage.Title;
+}
+	@{ Html.RenderPartial("_banner"); }
+
+
+<!-- Main -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+
+            <!-- Content -->
+            <div id="content" class="12u skel-cell-important">
+                <section>
+                    <header>
+                        <h2>@pageTitle</h2>
+                       @if (CurrentPage.Ancestors().Any())
+                       {
+                        <ul class="breadcrumb">
+                            @* For each page in the ancestors collection which have been ordered by Level (so we start with the highest top node first) *@
+                            @foreach (var page in CurrentPage.Ancestors().OrderBy("Level"))
+                            {
+                                <li><a href="@page.Url">@page.Name</a> <span class="divider">/</span></li>
+                            }
+                            @* Display the current page as the last item in the list *@
+                            <li class="active">@CurrentPage.Name</li>
+                        </ul>
+                       }
+                        <span class="byline">@CurrentPage.byline</span>
+                       
+                      
+                    </header>
+                   
+                   
+                    
+                        @CurrentPage.bodyText
+                       
+</section>
+                    </div>
+
+            
+
+        </div>
+    </div>
+</div>
+<!-- /Main -->

@@ -1,0 +1,53 @@
+﻿{
+        propertyEditors: [{
+			guid: "5eb3ed92-d489-4112-9900-1a239fb00751",
+			/*this must be a unique alias*/ 
+            alias: "EventCalendar.CalendarPicker",
+            /*the name*/
+            name: "Calendar Picker",
+			valueType: "JSON",
+            /*the html file we will load for the editor*/
+            editor: {
+                view: "~/App_Plugins/EventCalendar/Editors/calendar.html"
+            },
+			prevalues: {}
+        }],
+		parameterEditors:[],
+        javascript: [
+
+			'~/App_Plugins/EventCalendar/Editors/calendar.editor.controller.js',
+
+			'~/App_Plugins/EventCalendar/localization.js',
+			'~/App_Plugins/EventCalendar/directives.js',
+
+            '~/App_Plugins/EventCalendar/backoffice/ectree/calendar.edit.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/calendar.create.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/calendar.delete.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/calendar.overview.controller.js',
+					
+			'~/App_Plugins/EventCalendar/backoffice/ectree/location.edit.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/location.create.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/location.delete.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/location.overview.controller.js',
+			
+			'~/App_Plugins/EventCalendar/backoffice/ectree/event.edit.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/event.create.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/event.delete.controller.js',
+
+			'~/App_Plugins/EventCalendar/backoffice/ectree/revent.edit.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/revent.create.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/revent.delete.controller.js',
+
+			'~/App_Plugins/EventCalendar/backoffice/ectree/user.edit.controller.js',
+			'~/App_Plugins/EventCalendar/backoffice/ectree/security.overview.controller.js',
+
+			'~/App_Plugins/EventCalendar/backoffice/ectree/import.controller.js',
+
+            '~/App_Plugins/EventCalendar/calendar.resource.js',
+			'~/App_Plugins/EventCalendar/location.resource.js',
+			'~/App_Plugins/EventCalendar/event.resource.js',
+			'~/App_Plugins/EventCalendar/revent.resource.js',
+			'~/App_Plugins/EventCalendar/user.resource.js'
+        ],
+		css: []
+}

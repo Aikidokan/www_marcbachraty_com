@@ -1,0 +1,106 @@
+﻿@using System.Globalization
+@using MarcBachraty.Models
+@inherits UmbracoTemplatePage
+@{
+	Layout = "umbLayout.cshtml";
+	// If the editor has not explicitly provided the "Page title" property page
+	// then just show the name of the page otherwise show the provided title
+	var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
+		? CurrentPage.Name
+		: CurrentPage.Title;
+
+}
+@{ Html.RenderPartial("_banner"); }
+
+
+<!-- Main -->
+<div id="main">
+	<div class="container">
+		<div class="row">
+
+			<!-- Content -->
+			<div id="content" class="8u skel-cell-important">
+				<section>
+					<header>
+						<h2>@pageTitle</h2>
+						@if (CurrentPage.HasValue("image"))
+						{
+							<span class="image image-full"><img src="@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile" alt="" /></span>
+						}
+
+					</header>
+
+					@if (CurrentPage.HasValue("image"))
+					{
+
+						<img class="image left" width="20%" src="@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile" alt="" />
+
+					}
+
+					@CurrentPage.bodyText
+					@{
+						
+							<div class="row">
+								<div class="large-8 medium-7 small-12 columns">
+									@Html.Action("RenderContactForm", "Contact")
+								</div>
+							</div>
+					
+					}
+
+				</section>
+			</div>
+			<!-- Sidebar -->
+			<div id="sidebar" class="4u">
+				<section>
+					<header>
+						<h2>@CurrentPage.rightHeader</h2>
+					</header>
+					<div class="row">
+						@CurrentPage.rightText
+						@{
+
+							var multiUrlPickerDyn1 = CurrentPage.bulletlist1;
+							if (multiUrlPickerDyn1.Any())
+							{
+								<section class="6u">
+
+									<ul class="default">
+										@foreach (var item in multiUrlPickerDyn1)
+										{
+											<li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
+
+										}
+
+									</ul>
+								</section>
+							}
+						}
+						@{
+							var multiUrlPickerDyn2 = CurrentPage.bulletlist2;
+							if (multiUrlPickerDyn2.Any())
+							{
+								<section class="6u">
+									<ul class="default">
+										@foreach (var item in multiUrlPickerDyn2)
+										{
+											<li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
+
+										}
+
+									</ul>
+								</section>
+							}
+						}
+
+					</div>
+				</section>
+				<section>
+					@{Html.RenderPartial("_UpcomingSeminars");}
+				</section>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- /Main -->
