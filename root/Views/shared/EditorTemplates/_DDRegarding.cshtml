@@ -1,0 +1,15 @@
+﻿@using MarcBachraty.LocalResource
+@model string
+@{
+	var list = new List<SelectListItem>
+                       {
+                           new SelectListItem() {Text = "--  Regarding --", Value = "0"},
+                           new SelectListItem() {Text = forms.rsncontact, Value = "1"},
+						   new SelectListItem() {Text = forms.rsnarrange, Value = "2"},
+                           new SelectListItem() {Text = forms.rsngeneralquestion, Value = "3"},
+                           new SelectListItem() {Text = forms.rsnbuybook, Value = "4"},
+                           new SelectListItem() {Text = forms.rsnother, Value = "5"},
+                           
+                       };
+}
+@Html.DropDownListFor(model => model, new SelectList(list, "Value", "Text"), new { placeholder = forms.zip, @class = "sticky" })

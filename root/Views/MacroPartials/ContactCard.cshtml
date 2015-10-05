@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var id = Model.MacroParameters["ContactParam"];
+    var cp = Umbraco.Content(id);    
+    
+    }
+<ul class="default">
+    <li>@cp.name</li>
+    <li>@cp.dojo</li>
+@if (cp.HasValue("email"))
+                        {
+                            <li><a href="mailto:@cp.email">@cp.email</a></li>
+                        }
+    <li>@cp.rank</li>
+</ul>

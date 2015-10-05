@@ -1,0 +1,98 @@
+﻿@using System.Globalization
+@inherits UmbracoTemplatePage
+@{
+    Layout = "umbLayout.cshtml";
+    var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
+        ? CurrentPage.Name
+        : CurrentPage.Title;
+}
+@{ Html.RenderPartial("_banner"); }
+
+<div id="main">
+    <div class="container">
+        <div class="row">
+
+            <div id="content" class="8u skel-cell-important">
+                <section>
+                    <header>
+                        <h2>@pageTitle</h2>
+                        @if (CurrentPage.HasValue("image"))
+                        {
+                            <span class="image image-full"><img src="@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile" alt="" /></span>
+                        }
+
+                    </header>
+                    <article>
+                        @{
+                            var helper = new UmbracoHelper(UmbracoContext.Current);
+
+                            IPublishedContent root = helper.Content(1068);
+                            IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
+                            foreach (var item in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start"))
+                            {
+                                if (Convert.ToDateTime(item.GetProperty("end").Value) > DateTime.Now)
+                                {
+                                    <section>
+                                           
+                                        <h3><a href="@item.Url">@item.GetProperty("SubHeader").Value</a></h3>
+                                        <span class="byline"></span>
+                                        <ul class="meta">
+                                            <li class="timestamp">@Convert.ToDateTime(item.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US"))</li>
+                                        </ul>
+
+                                        @if (item.HasValue("image"))
+                                        {
+                                            <a href="@item.Url" class="image left"><img style="width: 30%" src="@Umbraco.Media(item.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></a>
+                                        }
+                                        @Umbraco.Truncate(item.GetProperty("BodyText").Value.ToString(), 150) 
+                                        @if (item.HasValue("seminarPoster"))
+                                        {
+                                            <p>Seminarposter here: <a href="@Umbraco.Media(item.GetProperty("seminarPoster").ToString()).umbracoFile">Poster</a></p>
+                                        }
+                                        <a href="@item.Url" class="button">Continue Reading</a>
+                                        @*<a href="@item.Url" class="button">Add to calendar</a>*@
+                                    </section>
+                                }
+                            }
+                        }
+                    </article>
+                    <!-- /Content -->
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <section>
+                    <header>
+                        <h2>@CurrentPage.rightHeader</h2>
+                    </header>
+	                <div class="row">
+						<h3>Next seminar: </h3> 
+						@{
+							foreach (var itm in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start").Take(1))
+							{
+								if (Convert.ToDateTime(itm.GetProperty("end").Value) > DateTime.Now)
+								{
+									<section class="4u">
+										<a class="image full" href="@itm.Url">
+											@if (itm.HasValue("image"))
+											{
+												<div class="clip"><img src="@Umbraco.Media(itm.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></div>
+											}
+											<header>
+												<h3>@Convert.ToDateTime(itm.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US")) @itm.GetProperty("subheader").Value</h3>
+											</header>
+											@Umbraco.Truncate(itm.GetProperty("bodyText").Value.ToString(), 40)
+										</a>
+									</section>
+								}
+							}
+						}
+</div>
+                </section>
+              
+            </div>
+
+        </div>
+    </div>
+</div>

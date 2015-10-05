@@ -1,0 +1,130 @@
+﻿@inherits UmbracoTemplatePage
+@{
+
+	var gmapLocation = Model.Content.GetPropertyValue<GMapsLocation>("mapToDojo");
+	decimal lat = gmapLocation.Lat;
+	decimal lng = gmapLocation.Lng;
+
+}
+<script>
+   
+    var map;
+    var lat = @lat;//
+    var lng = @lng;
+    var myLatlng = new google.maps.LatLng(lat,lng);
+    function initialize() {
+        var mapOptions = {
+            zoom: 14,
+            center: myLatlng
+
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var contentString = '';@*'<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">@CurrentPage.infoboxHeader</h1>'+
+            '<div id="bodyContent">'+
+            '@(Html.Raw(CurrentPage.infoboxContent))'+
+            '</div>'+
+            '</div>';*@
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Location'
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+        });
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+</script>
+<style>
+	/* Google Maps
+	********************************/
+
+	.spot-image, .map-canvas {
+		height: 200px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #FBFBFB;
+	    
+	}
+
+	.lt-ie9 .map-canvas, .lt-ie9 .spot-image {
+		margin-bottom: 100px;
+		width: 96%;
+
+	}
+
+	img {
+		height: auto;
+		max-width: 100%;
+	}
+
+     .featured-padding > span.footer {
+      position: absolute;
+    bottom: 120px;
+    }
+</style>
+
+<div id="featured">
+	<div class="container">
+		<div class="row">
+			<section class="4u pull-down">
+				<div class="map-canvas" id="map-canvas"></div>
+			    
+			        <h3>@CurrentPage.headerSpot1</h3><div class="featured-padding">
+
+    @CurrentPage.bodytextSpot1
+                                                         <span class="footer"><a class="button button-style1" href="@Umbraco.Content(CurrentPage.spot1Link.ToString()).Url">Read more</a></span>
+</div>
+            </section>
+			<section class="4u pull-down">
+			    
+                    <div class="spot-image" style="position: relative">
+					    @if (CurrentPage.HasValue("spot2Image"))
+					    {
+					        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("spot2Image")).Id;
+					        var spotimg2 = Umbraco.TypedMedia((int) id);
+					        <img src="@spotimg2.Url" alt="@CurrentPage.headerSpot2"/>
+					    }
+				    </div>
+
+                <h3>@CurrentPage.headerSpot2</h3><div class="featured-padding">
+                    @CurrentPage.bodyTextSpot2
+                                                     <span class="footer"><a class="button button-style1" href="@Umbraco.Content(CurrentPage.spot2Link.ToString()).Url">Read more</a></span>
+</div>
+            </section>
+		    <section class="4u pull-down">
+                <div class="spot-image" style="position: relative">
+                    @if (CurrentPage.HasValue("spot3Image"))
+                    {
+                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("spot3Image")).Id;
+                        var spotimg3 = Umbraco.TypedMedia((int)id);
+                        @*<img src="@spotimg3.GetCropUrl(293)" alt="@CurrentPage.headerSpot3" />*@
+                        <img src="@spotimg3.Url" alt="@CurrentPage.headerSpot3" />
+                    }
+                </div>
+		            <h3>@CurrentPage.headerSpot3</h3><div class="featured-padding">
+   @CurrentPage.bodyTextSpot3
+
+    <span class="footer"><a class="button button-style1" href="@Umbraco.Content(CurrentPage.spot3Link.ToString()).Url">Read more</a></span>
+</div>
+            </section>
+
+		</div>
+	</div>
+</div>
+

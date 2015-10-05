@@ -1,0 +1,28 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var homePage = CurrentPage.AncestorsOrSelf(1).First();
+}
+
+<!-- Contact -->
+<div id="footer">
+    <div class="container">
+        <section>
+            <ul class="contact">
+                @RenderLinkIfNotEmpty(homePage.FacebookLink, "fa fa-facebook-official")
+                @RenderLinkIfNotEmpty(homePage.TwitterLink, "fa fa-twitter-square")
+                
+
+                @RenderLinkIfNotEmpty(homePage.LinkedinLink, "fa fa-linkedin-square")
+
+            </ul>
+        </section>
+    </div>
+</div>
+<!-- /Contact -->
+@helper RenderLinkIfNotEmpty(dynamic link, string cssClass)
+{
+    if (string.IsNullOrEmpty(link) == false)
+    {
+        <li><a href="@link" class="@cssClass"></a></li>
+    }
+}

@@ -1,0 +1,141 @@
+﻿@using System.Globalization
+@inherits UmbracoTemplatePage
+@*<header>
+	<h2>Upcoming seminars</h2>
+</header>
+@{
+	var helper = new UmbracoHelper(UmbracoContext.Current);
+
+	IPublishedContent root = helper.Content(1068);
+	IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
+	foreach (var itm in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start").Take(3))
+	{
+		if (Convert.ToDateTime(itm.GetProperty("end").Value) > DateTime.Now)
+		{
+			<section class="4u">
+				<a class="image full" href="@itm.Url">
+					@if (itm.HasValue("image"))
+					{
+						<div class="clip"><img src="@Umbraco.Media(itm.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></div>
+					}
+					<header>
+						<h3>@Convert.ToDateTime(itm.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US")) @itm.GetProperty("subheader").Value</h3>
+					</header>
+					@Umbraco.Truncate(itm.GetProperty("bodyText").Value.ToString(), 40)
+				</a>
+			</section>
+		}
+	}
+}*@
+
+<style>
+    #sidebarseminars {
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 1200px;
+    }
+     .responsive-container {
+         border-radius: 15px 50px 30px;
+         text-align: left;
+         height: 190px;
+         border: 3px solid #F5F5F5;
+         margin-top: 20px;
+         cursor: pointer;
+         z-index: 0;
+         background-color: #F7F7F7;
+     }
+
+    .responsive-container a {
+        display: block;
+        padding: 1em;
+        height: 100%;
+        color: #777;
+    }
+
+    .responsive-container a:hover {
+        text-decoration: none;
+    }
+
+    .bannerbg {
+        width: 330px;
+        height: 170px;
+        position: absolute;
+        z-index: 1;
+        background-repeat: no-repeat;
+        background-position: 100% 70%;
+        opacity: 0.3;
+    }
+
+    .responsive-container:hover .bannerbg {
+        opacity: 1;
+    }
+
+    .banner-text {
+        height: 100%;
+    }
+
+    .banner-text > span.footer {
+        position: absolute;
+        bottom: 10px;
+        font-size: 80%;
+        font-weight: 600;
+        padding-left: 25px;
+    }
+</style>
+
+<div id="sidebarseminars"></div>
+    <script language="javascript" type="text/javascript">
+        $.getJSON("/umbraco/Surface/FB/GetGroupFeed", function (data) {
+            if ($(data) !== null) {
+                $('#sidebarseminars').append('<div class="slider responsive">');
+                $(data).each(function (index, item) {
+                    $('.responsive').append('<div class="responsive-container"><a target="' + item.link.target + '" href="' + item.link.href + '">' +
+                        '<div class="bannerbg" style="background-image: url(/images/assets/' + item.TypeOfContent + '.png);"></div><div>' +
+                        '<div class="banner-text"><h3>' + item.title + '</h3><span class="footer">Published: ' + item.published + '</span></div></div></a></div>');
+                });
+                $('.slider').slick({
+                    dots: false,
+                    vertical: true,
+                    speed: 600,
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    autoplay: false,
+                    accessibility: true,
+                    infinite: true,
+                    arrows: false,
+                    swipeToSlide: true,
+                    autoplaySpeed: 3000,
+                    cssEase: 'ease',
+                    pauseOnHover: true,
+                    swipe: true,
+                    touchMove: true,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+
+                    ]
+                });
+            }
+        });
+    </script>
