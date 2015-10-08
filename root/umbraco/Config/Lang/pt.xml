@@ -602,7 +602,6 @@ Você pode publicar esta página e todas suas sub-páginas ao selecionar <em>pub
     <key alias="statistics">Estatísticas</key>
     <key alias="translation">Tradução</key>
     <key alias="users">Usuários</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Modelo padrão</key>
@@ -787,7 +786,6 @@ Para fechar a tarefa de tradução vá até os detalhes e clique no botão "Fech
     <key alias="stylesheets">Stylesheets</key>
     <key alias="templates">Modelos</key>
     <key alias="xslt">Arquivos XSLT</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="update">
     <key alias="updateAvailable">Nova atualização pronta</key>

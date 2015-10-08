@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>GMaps.controller.js</guid>
+      <orgPath>/App_Plugins/GMaps</orgPath>
+      <orgName>GMaps.controller.js</orgName>
+    </file>
+    <file>
+      <guid>GMaps.html</guid>
+      <orgPath>/App_Plugins/GMaps</orgPath>
+      <orgName>GMaps.html</orgName>
+    </file>
+    <file>
+      <guid>package.manifest</guid>
+      <orgPath>/App_Plugins/GMaps</orgPath>
+      <orgName>package.manifest</orgName>
+    </file>
+    <file>
+      <guid>GMapsLocation.cs</guid>
+      <orgPath>/App_Code</orgPath>
+      <orgName>GMapsLocation.cs</orgName>
+    </file>
+    <file>
+      <guid>GMapsValueConverter.cs</guid>
+      <orgPath>/App_Code</orgPath>
+      <orgName>GMapsValueConverter.cs</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Netaddicts.GMaps</name>
+      <version>0.2</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+      <url>http://our.umbraco.org//projects/backoffice-extensions/google-maps-property-editor-w-google-places-autocomplete-lookup</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Dirk De Grave</name>
+      <website>http://www.netaddicts.be</website>
+    </author>
+    <readme><![CDATA[Contains a Google Maps Property Editor w/ Google Places Autocomplete lookup]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+</umbPackage>

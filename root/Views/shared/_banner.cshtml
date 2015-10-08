@@ -5,7 +5,7 @@
     var homePage = CurrentPage.AncestorsOrSelf(1).First();
 }
 
-    <div id="header" style="position: relative; background: url('@Umbraco.Media(homePage.bannerBackgroundImage.ToString()).umbracoFile') no-repeat center center; background-size: cover; text-align: right;">
+    <div id="header" class="bgimage">
         @{ Html.RenderPartial("umbTopNavigation"); }
 
         <div class="container">

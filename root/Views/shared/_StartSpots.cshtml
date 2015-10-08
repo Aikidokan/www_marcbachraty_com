@@ -1,16 +1,18 @@
 ﻿@inherits UmbracoTemplatePage
 @{
 
-	var gmapLocation = Model.Content.GetPropertyValue<GMapsLocation>("mapToDojo");
-	decimal lat = gmapLocation.Lat;
-	decimal lng = gmapLocation.Lng;
+//var gmapLocation = Model.Content.GetPropertyValue<umbraco_v7_property_editors_gmaps.Models.GMapsLocation>("mapToDojo");
+//decimal lat = gmapLocation.Latitude;
+//decimal lng = gmapLocation.Longitude;
 
-}
+
+
+    }
 <script>
-   
+
     var map;
-    var lat = @lat;//
-    var lng = @lng;
+    var lat = 48.7964474;
+    var lng = 2.2716887999999926;
     var myLatlng = new google.maps.LatLng(lat,lng);
     function initialize() {
         var mapOptions = {
@@ -21,7 +23,7 @@
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-        var contentString = '';@*'<div id="content">'+
+        var contentString = '<div>56 Rue de Fontenay, 92140 Clamart</div>';@*'<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">@CurrentPage.infoboxHeader</h1>'+
