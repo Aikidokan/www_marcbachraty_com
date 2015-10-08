@@ -7,7 +7,11 @@
         : CurrentPage.Title;
 }
 @{ Html.RenderPartial("_banner"); }
-
+<style>
+    .clearfix {
+  overflow: auto;
+}
+</style>
 <div id="main">
     <div class="container">
         <div class="row">
@@ -18,7 +22,12 @@
                         <h2>@pageTitle</h2>
                         @if (CurrentPage.HasValue("image"))
                         {
-                            <span class="image image-full"><img src="@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile" alt="" /></span>
+                            var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
+                            var spotimg2 = Umbraco.TypedMedia((int)id);
+                            <span class="image image-full">
+                                <img src="@spotimg2.Url" alt="@CurrentPage.Name" />
+                                
+                            </span>
                         }
 
                     </header>
@@ -35,22 +44,26 @@
                                     <section>
                                            
                                         <h3><a href="@item.Url">@item.GetProperty("SubHeader").Value</a></h3>
-                                        <span class="byline"></span>
+                                        
                                         <ul class="meta">
                                             <li class="timestamp">@Convert.ToDateTime(item.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US"))</li>
                                         </ul>
-
-                                        @if (item.HasValue("image"))
-                                        {
-                                            <a href="@item.Url" class="image left"><img style="width: 30%" src="@Umbraco.Media(item.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></a>
-                                        }
-                                        @Umbraco.Truncate(item.GetProperty("BodyText").Value.ToString(), 150) 
-                                        @if (item.HasValue("seminarPoster"))
-                                        {
-                                            <p>Seminarposter here: <a href="@Umbraco.Media(item.GetProperty("seminarPoster").ToString()).umbracoFile">Poster</a></p>
-                                        }
-                                        <a href="@item.Url" class="button">Continue Reading</a>
-                                        @*<a href="@item.Url" class="button">Add to calendar</a>*@
+                                        <div class="clearfix">
+                                            @if (item.HasValue("image"))
+                                            {
+                                                <a href="@item.Url">
+                                                    <img class="image left" src="@Umbraco.Media(item.GetPropertyValue("image").ToString()).GetResponsiveImageUrl(170, 0)" alt="" />
+                                                </a>
+                                            }
+                                            @Umbraco.Truncate(item.GetProperty("BodyText").Value.ToString(), 150)
+                                            @if (item.HasValue("seminarPoster"))
+                                            {
+                                                var id = Umbraco.TypedMedia(item.GetPropertyValue("seminarPoster")).Id;
+                                                var media = Umbraco.TypedMedia((int)id);
+                                                <p>Seminarposter here: <a href="@media.Url">Poster</a></p>
+                                            }
+                                            <a href="@item.Url" class="button">Continue Reading</a>
+                                        </div>
                                     </section>
                                 }
                             }
@@ -66,7 +79,7 @@
                     <header>
                         <h2>@CurrentPage.rightHeader</h2>
                     </header>
-	                <div class="row">
+	                @*<div class="row">
 						<h3>Next seminar: </h3> 
 						@{
 							foreach (var itm in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start").Take(1))
@@ -88,7 +101,7 @@
 								}
 							}
 						}
-</div>
+</div>*@
                 </section>
               
             </div>

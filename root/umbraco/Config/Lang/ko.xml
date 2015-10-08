@@ -613,7 +613,6 @@
     <key alias="statistics">통계</key>
     <key alias="translation">변환</key>
     <key alias="users">사용자</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">기본 템플릿</key>
@@ -803,7 +802,6 @@
     <key alias="stylesheets">스타일시트</key>
     <key alias="templates">템플릿</key>
     <key alias="xslt">XSLT 파일</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="update">
     <key alias="updateAvailable">새 업데이트가 준비되었습니다.</key>

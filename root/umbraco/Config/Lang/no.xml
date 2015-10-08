@@ -579,7 +579,6 @@ Vennlig hilsen Umbraco roboten
     <key alias="statistics">Statistikk</key>
     <key alias="translation">Oversettelse</key>
     <key alias="users">Brukere</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Standardmal</key>
@@ -772,7 +771,6 @@ Vennlig hilsen Umbraco roboten
     <key alias="stylesheets">Stiler</key>
     <key alias="templates">Maler</key>
     <key alias="xslt">XSLT Filer</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="update">
     <key alias="updateAvailable">Ny oppdatering er klar</key>

@@ -12,7 +12,6 @@ using System.Xml.Serialization;
 using HtmlAgilityPack;
 using MarcBachraty.Classes;
 using MarcBachraty.Classes.FB;
-using SimpleFeedReader;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -20,10 +19,10 @@ using Umbraco.Web.Mvc;
 
 namespace MarcBachraty.Controllers
 {
-    public class FbController : SurfaceController
+    public class FbController : Umbraco.Web.WebApi.UmbracoApiController
     {
 
-        public ActionResult GetGroupFeed()
+        public List<BannerItem> GetGroupFeed()
         {
             //var token = "159921737683962|5w_vxQq5eTz2wG1y8wKQl3yuP-8";
             //var client = new FacebookClient(token);
@@ -35,9 +34,9 @@ namespace MarcBachraty.Controllers
             List<BannerItem> umbracoEvents = UmbracoEvents();
             bannerItems.AddRange(umbracoEvents);
             bannerItems.AddRange(fbItems);
-            bannerItems.AddRange(ybItems);
-            bannerItems.Shuffle();
-            return Json(bannerItems, JsonRequestBehavior.AllowGet);
+            //bannerItems.AddRange(ybItems);
+            bannerItems.OrderBy(x=>x.published);
+            return bannerItems;
         }
 
         private List<BannerItem> UmbracoEvents()

@@ -1,14 +1,16 @@
 ﻿@inherits UmbracoTemplatePage
 @{
-	Layout = "umbLayout.cshtml";
-	// If the editor has not explicitly provided the "Page title" property page
-	// then just show the name of the page otherwise show the provided title
-	dynamic pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
-		? CurrentPage.Name
-		: CurrentPage.Title;
-	var gmapLocation = Model.Content.GetPropertyValue<GMapsLocation>("location");
-	decimal lat = gmapLocation.Lat;
-	decimal lng = gmapLocation.Lng;
+    Layout = "umbLayout.cshtml";
+    // If the editor has not explicitly provided the "Page title" property page
+    // then just show the name of the page otherwise show the provided title
+    dynamic pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
+        ? CurrentPage.Name
+        : CurrentPage.Title;
+    //   var gmapLocation = Model.Content.GetPropertyValue<object[]>("location");
+    //   decimal lat = decimal.Parse(gmapLocation[0].ToString());
+    //decimal lng = decimal.Parse(gmapLocation[1].ToString());
+    var lat = "48.7964474".Replace(",", ".");//
+    var lng = "2.2716887999999926".Replace(",", "."); ;
 }
 @{ Html.RenderPartial("_banner"); }
 
@@ -116,8 +118,12 @@
 			<div id="sidebar" class="4u" style="background-color: #f1f1f1;">
 				<section>
 					<header>
-						<h2 class="margin-top">Location</h2>
-						<div class="map-canvas" id="map-canvas"></div>
+					    <h2 class="margin-top">Location</h2>
+                       
+                                <div class="map-canvas" id="map-canvas"></div>
+
+                         
+						
 					</header>
                     
 				</section>
@@ -130,10 +136,10 @@
 							<ul class="default">
 								@if (CurrentPage.HasValue("arrangingClubLogo"))
 								{
-									<li><span class="image image-full">
+									<li><span>
                                    
-										    <img src="@Umbraco.Media(CurrentPage.arrangingClubLogo.ToString()).umbracoFile?width=160&quality=90" data-pixel-width="480" data-slimmage="true" alt="" />
-
+										    
+                                            <img class="image image-full" src="@Umbraco.Media(CurrentPage.arrangingClubLogo.ToString()).GetResponsiveImageUrl(260,0)" alt="sss" />
                                     
 									    </span></li>
 								}
@@ -149,37 +155,10 @@
                
 				<section>
                     
-                        @*@{Html.RenderPartial("_UpcomingSeminars");}*@
+                     
                    
-					</section>
-					@*<header>
-		Previous events at organiser.
-	</header>
-	Coming soon
-	@{
-		if (CurrentPage.arrangingClub != null)
-		{
-			var helper = new UmbracoHelper(UmbracoContext.Current);
-
-			IPublishedContent root = helper.Content(1068);
-			IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
-
-			var PrevEvents = helper.Content(eventRoot.Children.Where("end < DateTime.Now.Date"));
-
-
-
-			@Html.Raw("<ul class=}\"style\">")
-			foreach (IPublishedContent prev in PrevEvents.Where("contact == @CurrentPage.contact"))
-			{
-				<li>
-					<p class="posted">@prev.GetProperty("start") May 21, 2014</p>
-					<p><a href="#">@prev.Name</a></p>
-				</li>
-			}
-
-			@Html.Raw("</ul>")
-
-					}}*@
+			
+	
 				</section>
 			</div>
 
