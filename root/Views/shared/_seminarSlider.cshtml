@@ -28,7 +28,7 @@
         position: absolute;
         z-index: 1;
         background-repeat: no-repeat;
-        background-position: 100% 70%; 
+        background-position: 70% 70%; 
         opacity: 0.3;
     }
     
@@ -51,7 +51,7 @@
 
 
 <script language="javascript" type="text/javascript">
-    $.getJSON("/umbraco/Surface/FB/GetGroupFeed", function(data) {
+    $.getJSON("/Umbraco/Api/FB/GetGroupFeed", function (data) {
         if ($(data) !== null) {
             $('#content').append('<div class="slider responsive">');
             $(data).each(function(index, item) {

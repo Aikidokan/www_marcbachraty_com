@@ -529,7 +529,6 @@ Miłego dnia!]]></key>
     <key alias="statistics">Statystyki</key>
     <key alias="translation">Tłumaczenie</key>
     <key alias="users">Użytkownicy</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">Domyślny szablon</key>
@@ -699,7 +698,6 @@ Miłego dnia!]]></key>
     <key alias="stylesheets">Arkusze stylów</key>
     <key alias="templates">Szablony</key>
     <key alias="xslt">Pliki XSLT</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="update">
     <key alias="updateAvailable">Aktualizacja jest gotowa</key>

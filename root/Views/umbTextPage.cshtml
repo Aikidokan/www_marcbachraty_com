@@ -11,8 +11,6 @@
 
 }
 	@{ Html.RenderPartial("_banner"); }
-
-
 <!-- Main -->
 <div id="main">
     <div class="container">
@@ -27,16 +25,15 @@
                        
                       
                     </header>
-                    
-                    @if (CurrentPage.HasValue("image"))
-                    {
-                       
-                            <img class="image left" width="20%" src="@Umbraco.Media(CurrentPage.image.ToString()).umbracoFile" alt="" />
-                     
-                    }
-                    
-                        @CurrentPage.bodyText
-                       
+
+                   @if (CurrentPage.HasValue("Image"))
+                   {
+                      
+                       <img class="image left" src="@Umbraco.Media(CurrentPage.Image.ToString()).GetResponsiveImageUrl(170,0)" alt="sss"/>
+                   }
+
+@CurrentPage.bodyText
+
 </section>
                     </div>
 
@@ -87,7 +84,7 @@
                     </div>
                 </section>
 				<section>
-					@{Html.RenderPartial("_UpcomingSeminars");}
+					@{ Html.RenderPartial("_UpcomingSeminars"); }
 				</section>
             </div>
 

@@ -637,7 +637,6 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="statistics">סטטיסטיקות</key>
     <key alias="translation">תירגום</key>
     <key alias="users">משתמשים</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="settings">
     <key alias="defaulttemplate">תבנית ברירת מחדל</key>
@@ -826,7 +825,6 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="stylesheets">גיליונות סגנון</key>
     <key alias="templates">תבניות</key>
     <key alias="xslt">קבצי XSLT</key>
-    <key alias="eventCalendar">EventCalendar</key>
   </area>
   <area alias="update">
     <key alias="updateAvailable">עידכון חדש זמין</key>
