@@ -6,6 +6,7 @@ using System.ServiceModel.Syndication;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using System.Net;
 
 namespace MarcBachraty.Classes.FB
 {
@@ -40,12 +41,37 @@ namespace MarcBachraty.Classes.FB
                         target = "_blank"
                     };
                     le.updated = e.LastUpdatedTime.DateTime.ToShortDateString();
-                    le.published = e.PublishDate.DateTime.ToShortDateString();
+                    le.published = "Published on facebook "+e.PublishDate.DateTime.ToShortDateString();
                     le.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.FacebookPost);
                     bannerItems.Add(le);
                 }
             }
             return bannerItems;
+
+            /* sparas, extrahera bilder
+            List<RssFeedItem> rssItems = new List<RssFeedItem>();
+                    Stream stream = e.Result;
+                    XmlReader response = XmlReader.Create(stream);
+                    SyndicationFeed feeds = SyndicationFeed.Load(response);
+                    foreach (SyndicationItem f in feeds.Items)
+                    {
+                        RssFeedItem rssItem = new RssFeedItem();
+
+                        rssItem.Description = f.Summary.Text;
+
+ const string rx =  @"(?<=img\s+src\=[\x27\x22])(?<Url>[^\x27\x22]*)(?=[\x27\x22])"; 
+                        foreach (Match m in Regex.Matches(f.Summary.Text, rx, RegexOptions.IgnoreCase | RegexOptions.Multiline))
+                        {
+                            string src = m.Groups[1].Value;
+                            if (src.StartsWith("//")) // Google RSS has it
+                            {
+                                src = src.Replace("//", "http://");
+                            }
+
+                            rssItem.ImageLinks.Add(src);
+                        }
+            
+            */
         }
         private DateTime ParseDate(string date)
         {
@@ -55,81 +81,40 @@ namespace MarcBachraty.Classes.FB
             else
                 return DateTime.MinValue;
         }
-
+        
         public List<BannerItem> YoutubeItems()
         {
-            //try
-            //{
-            //    System.Xml.Linq.XDocument doc = System.Xml.Linq.XDocument.Load(ConfigurationManager.AppSettings["YoutubeFeed"]);
-            //    // Feed/Entry
-            //    var entries = from item in doc.Elements().Where(i => i.Name.LocalName == "entry")
-            //                  select new BannerItem()
-            //                  {
-
-            //                      TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.YoutubeMedia),
-            //    content = new entryContent {Value = item.Elements().First(i => i.Name.LocalName == "content").Value},
-            //    MediaUrl =  item.Elements().First(i => i.Name.LocalName == "thumbnail").Attribute("thumbnail").Value,
-            //                      link =new entryLink {href = item.Elements().First(i => i.Name.LocalName == "link").Attribute("href").Value ,target = "_blank"},
-            //                      published = ParseDate(item.Elements().First(i => i.Name.LocalName == "published").Value).ToString(),
-            //                      title = item.Elements().First(i => i.Name.LocalName == "title").Value
-            //                  };
-            //    return entries.ToList();
-            //}
-            //catch(Exception exception)
-            //{
-            //    throw new Exception(exception.Message);
-            //}
-
-
-            Atom10FeedFormatter formatter = new Atom10FeedFormatter();
-
-            using (XmlReader reader = XmlReader.Create(ConfigurationManager.AppSettings["YoutubeFeed"]))
-            {
-                formatter.ReadFrom(reader);
-            }
-
+            
+            XElement feedXML = XElement.Load(ConfigurationManager.AppSettings["YoutubeFeed"]);
+            XNamespace atom = "http://www.w3.org/2005/Atom";
+            XNamespace media = "http://search.yahoo.com/mrss/";
 
             var bannerItems = new List<BannerItem>();
 
-            foreach (var e in formatter.Feed.Items)
+
+            var feeds = feedXML.Elements().Where(element => element.Name == atom + "entry");
+
+            foreach (var feed in feeds)
             {
-
-                BannerItem le = new BannerItem();
-                le.title = e.Title.Text;
-                le.link = new entryLink();
-
-
-                le.link.target = "_blank";
-                //foreach (SyndicationElementExtension extension in e.ElementExtensions)
-                //{
-                //    XElement ele = extension..GetObject<xe();
-
-                //    if (ele.ToString().StartsWith("<media:thumbnail"))
-                //    {
-                //        int index = ele.ToString().IndexOf("<media:thumbnail");
-                //        if (index > 0)
-                //        {
-                //            le.MediaUrl = ele.ToString().Substring(0, index).Replace("<media:thumbnail url=\"", "");
-                //            le.MediaUrl.Replace("\" width=\"480\" height=\"360\"/>", "");
-                //        }
-
-
-                //    }
-
-                //}
-
-
-                le.updated = e.LastUpdatedTime.DateTime.ToShortDateString();
-                le.published = e.PublishDate.DateTime.ToShortDateString();
-                le.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.YoutubeMedia);
-                bannerItems.Add(le);
-
+                var bi= new BannerItem();
+                bi.title = feed.Element(media+"group").Element(media + "title").Value+" - Video";
+                bi.MediaUrl =
+                    feed.Element(media + "group").Element(media + "thumbnail") != null
+                        ? feed.Element(media + "group").Element(media + "thumbnail").Attribute("url").Value
+                        : "";
+                bi.link = new entryLink()
+                {
+                    href = feed.Element(atom + "link").Attribute("href").Value,
+                    target = "_blank"
+                };
+                bi.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.YoutubeMedia);
+                bi.published = feed.Element(media + "group").Element(media + "community").Element(media + "statistics").
+                    Attribute("views").Value+ " views on Youtube";
+                bannerItems.Add(bi);
             }
             return bannerItems;
+
         }
-        private static T GetExtensionElementValue<T>(SyndicationItem item, string extensionElementName)
-        {
-            return item.ElementExtensions.Where(ee => ee.OuterName == extensionElementName).First().GetObject<T>();
-        }
+        
     }
 }

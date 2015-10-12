@@ -31,11 +31,14 @@ namespace MarcBachraty.Controllers
             List<BannerItem> bannerItems = new List<BannerItem>();
             var fbItems = cacheHlp.GetFbItems();
             var ybItems = cacheHlp.GetYbItems();
+            //var reader = new FeedReader();
+            //var ybItems = reader.YoutubeItems();
             List<BannerItem> umbracoEvents = UmbracoEvents();
             bannerItems.AddRange(umbracoEvents);
             bannerItems.AddRange(fbItems);
-            //bannerItems.AddRange(ybItems);
-            bannerItems.OrderBy(x=>x.published);
+            bannerItems.AddRange(ybItems);
+            //bannerItems.OrderBy(x=>x.published);
+            bannerItems.Shuffle();
             return bannerItems;
         }
 
@@ -62,8 +65,8 @@ namespace MarcBachraty.Controllers
                             href = itm.Url,
                             target = "_self"
                         };
-                        bi.StartDateTime = itm.GetProperty("start").Value.ToString().ToDate().ToShortDateString();
-                        bi.published = itm.CreateDate.ToShortDateString();
+                        bi.published = bi.StartDateTime = "Seminar starts "+itm.GetProperty("start").Value.ToString().ToDate().ToShortDateString();
+
                         bi.updated = itm.UpdateDate.ToShortDateString();
                         bi.TypeOfContent = Enum.GetName(typeof(TypeOfContent),TypeOfContent.UmbracoEvent);
 
