@@ -359,6 +359,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\assets\FacebookPost.png" />
     <Content Include="images\assets\UmbracoEvent.png" />
+    <Content Include="images\assets\YoutubeMedia.png" />
     <Content Include="images\header_marc_throws.jpg" />
     <Content Include="images\mobileUI-site-nav-opener-bg.svg" />
     <Content Include="images\mobileUI-site-nav.svg" />

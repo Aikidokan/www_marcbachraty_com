@@ -32,6 +32,7 @@
         opacity: 0.3;
     }
     
+
     .responsive-container:hover .bannerbg {
         opacity: 1;
     }
@@ -55,9 +56,10 @@
         if ($(data) !== null) {
             $('#content').append('<div class="slider responsive">');
             $(data).each(function(index, item) {
-                $('.responsive').append('<div class="responsive-container"><a target="' + item.link.target + '" href="' + item.link.href + '">' +
+                $('.responsive').append('<div class="responsive-container"><a style="background-clip: content-box;background-image: url(' + item.MediaUrl + ');' +
+                    'background-size: 30%;background-repeat: no-repeat;background-position: 50% 50%;" target="' + item.link.target + '" href="' + item.link.href + '">' +
                     '<div class="bannerbg" style="background-image: url(/images/assets/' + item.TypeOfContent + '.png);"></div><div>' +
-                    '<div class="banner-text"><h3>' + item.title + '</h3><span class="footer">Published: ' + item.published + '</span></div></div></a></div>');
+                    '<div class="banner-text"><h3>' + item.title + '</h3><span class="footer">' + item.published + '</span></div></div></a></div>');
             });
             $('.slider').slick({
                 dots: false,

@@ -42,6 +42,7 @@ namespace MarcBachraty.Classes.FB
     public class BannerItem:BannerEvent
     {
         public string MediaUrl { get; set; } 
+        public string ThumbnailUrl { get; set; } 
         public string TypeOfContent { get; set; } 
       
     }
