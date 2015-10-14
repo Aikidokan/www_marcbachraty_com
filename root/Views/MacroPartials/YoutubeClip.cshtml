@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
 @{
     var str = new Uri(Model.MacroParameters["youtubevideourl"].ToString());
-
+    var width = Model.MacroParameters["youtubewidth"].ToString();
     <div class="youtubevideo">
        
         @if (str.AbsoluteUri.Contains("youtube"))
@@ -9,7 +9,7 @@
             var movieCode = str.Query.Remove(0, 3);
 
             <div class="embed-container">
-                <iframe width="560" height="315" src="//www.youtube.com/embed/@movieCode" frameborder="0" allowfullscreen></iframe>               
+                <iframe width="" height="315" src="//www.youtube.com/embed/@movieCode" frameborder="0" allowfullscreen></iframe>               
             </div>
 
         }

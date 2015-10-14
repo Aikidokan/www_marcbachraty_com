@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngularGoogleMaps, Version=1.0.8.17, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AngularGoogleMaps.1.0.8-alpha-000017\lib\net45\AngularGoogleMaps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -319,8 +323,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\angular-google-maps.js" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\angular-google-maps.min.js" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\config.coordinatesbehavour.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\config.defaultlocation.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\config.format.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\config.icon.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\config.icon.js" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\controller.js" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\iconanchorpoint.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\iconsize.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\iconurl.html" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\underscore-min.js" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\view.css" />
+    <Content Include="App_Plugins\AngularGoogleMaps\1.0.8\view.html" />
     <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.html" />
     <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.js" />
+    <Content Include="App_Plugins\TheDashboard\TheDashboard.controller.js" />
+    <Content Include="App_Plugins\TheDashboard\TheDashboard.css" />
+    <Content Include="App_Plugins\TheDashboard\TheDashboard.html" />
+    <Content Include="App_Plugins\TheDashboard\TheDevDashboard.controller.js" />
+    <Content Include="App_Plugins\TheDashboard\TheDevDashboard.html" />
+    <Content Include="App_Plugins\TheDashboard\umbraco-guy.png" />
+    <Content Include="App_Plugins\YouTube\css\YouTube.css" />
+    <Content Include="App_Plugins\YouTube\js\YouTube.js" />
+    <Content Include="App_Plugins\YouTube\views\preValues\YouTube.ChannelInfo.html" />
+    <Content Include="App_Plugins\YouTube\views\preValues\YouTube.MinMax.html" />
+    <Content Include="App_Plugins\YouTube\views\preValues\YouTube.orderby.html" />
+    <Content Include="App_Plugins\YouTube\views\propertyEditors\YouTube.channel.html" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -495,6 +525,8 @@
       <LastGenOutput>forms.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="App_Plugins\TheDashboard\package.manifest" />
+    <Content Include="App_Plugins\YouTube\package.manifest" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
     <Content Include="Views\shared\umbAbout.cshtml" />
     <Content Include="Views\shared\_seminarSlider.cshtml">
