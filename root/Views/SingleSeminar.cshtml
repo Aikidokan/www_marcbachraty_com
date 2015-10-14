@@ -6,74 +6,12 @@
     dynamic pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
-    //   var gmapLocation = Model.Content.GetPropertyValue<object[]>("location");
-    //   decimal lat = decimal.Parse(gmapLocation[0].ToString());
-    //decimal lng = decimal.Parse(gmapLocation[1].ToString());
-    var lat = "48.7964474".Replace(",", ".");//
-    var lng = "2.2716887999999926".Replace(",", "."); ;
+    
 }
 @{ Html.RenderPartial("_banner"); }
 
-<script>
-	var map;
-	var lat = @lat;
-	var lng = @lng;
-	var myLatlng = new google.maps.LatLng(lat, lng);
-
-	function initialize() {
-		var mapOptions = {
-			zoom: 14,
-			center: myLatlng
-
-		};
-
-		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-		var contentString = '';@*'<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">@CurrentPage.infoboxHeader</h1>'+
-            '<div id="bodyContent">'+
-            '@(Html.Raw(CurrentPage.infoboxContent))'+
-            '</div>'+
-            '</div>';*@
-
-		var infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});
-
-		var marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map,
-			title: 'Location'
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map, marker);
-		});
-
-	}
-
-	google.maps.event.addDomListener(window, 'load', initialize);
 
 
-</script>
-<style>
-        /* Google Maps
-    ********************************/
-      
-	.map-canvas {
-		height: 200px;
-		margin: 0 auto;
-		width: 80%;
-	}
-
-
-       
-	.lt-ie9 .map-canvas {
-		margin-bottom: 100px;
-		width: 100%;
-	}
-</style>
 
 <!-- Main -->
 <div id="main">
@@ -113,54 +51,11 @@
 					@CurrentPage.BodyText
 				</section>
 			</div>
-
+            @Umbraco.RenderMacro("ContactCard", new { ContactParam = @CurrentPage.contact })
 			<!-- Sidebar -->
-			<div id="sidebar" class="4u" style="background-color: #f1f1f1;">
-				<section>
-					<header>
-					    <h2 class="margin-top">Location</h2>
-                       
-                                <div class="map-canvas" id="map-canvas"></div>
-
-                         
-						
-					</header>
-                    
-				</section>
-				<section>
-					<header>
-						<h2>Organizer</h2>@CurrentPage.arrangingClub
-					</header>
-					<div class="row">
-						<section class="4u">
-							<ul class="default">
-								@if (CurrentPage.HasValue("arrangingClubLogo"))
-								{
-									<li><span>
-                                   
-										    
-                                            <img class="image image-full" src="@Umbraco.Media(CurrentPage.arrangingClubLogo.ToString()).GetResponsiveImageUrl(260,0)" alt="sss" />
-                                    
-									    </span></li>
-								}
-
-							</ul>
-
-						</section>
-						<section class="8u">@Umbraco.RenderMacro("ContactCard", new {ContactParam = @CurrentPage.contact})
-
-						</section>
-					</div>
-				</section>
-               
-				<section>
-                    
-                     
-                   
 			
-	
-				</section>
-			</div>
+
+					
 
 
 

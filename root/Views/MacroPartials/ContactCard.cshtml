@@ -1,15 +1,125 @@
 ﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
 @{
     var id = Model.MacroParameters["ContactParam"];
-    var cp = Umbraco.Content(id);    
-    
+    var cp = Umbraco.Content(id);
+    System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+    customCulture.NumberFormat.NumberDecimalSeparator = ".";
+    System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+}
+<script>
+    var map;
+    var lat = @cp.angularMap.Latitude;
+    var lng = @cp.angularMap.Longitude;
+    var myLatlng = new google.maps.LatLng(lat, lng);
+
+    function initialize() {
+        var mapOptions = {
+            zoom: @cp.angularMap.Zoom,
+            center: myLatlng
+
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var contentString = '';@*'<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">@CurrentPage.infoboxHeader</h1>'+
+            '<div id="bodyContent">'+
+            '@(Html.Raw(CurrentPage.infoboxContent))'+
+            '</div>'+
+            '</div>';*@
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Location'
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+        });
+
     }
-<ul class="default">
-    <li>@cp.name</li>
-    <li>@cp.dojo</li>
-@if (cp.HasValue("email"))
-                        {
-                            <li><a href="mailto:@cp.email">@cp.email</a></li>
-                        }
-    <li>@cp.rank</li>
-</ul>
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+</script>
+<style>
+    /* Google Maps
+    ********************************/
+
+    .map-canvas {
+        height: 200px;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+
+
+    .lt-ie9 .map-canvas {
+        margin-bottom: 100px;
+        width: 100%;
+    }
+</style>
+<div id="sidebar" class="4u" style="background-color: #f1f1f1;">
+    <section>
+        <header>
+            <h2 class="margin-top">Location</h2>
+
+            <div class="map-canvas" id="map-canvas"></div>
+
+
+
+        </header>
+
+    </section>
+    <section>
+        <header>
+            <h2>Organizer</h2>
+            @if (CurrentPage.HasValue("arrangingClub"))
+            {
+                @CurrentPage.arrangingClub
+            }
+            else
+            {@cp.dojo }
+        </header>
+        <div class="row">
+            <section class="4u">
+                <ul class="default">
+                    @if (CurrentPage.HasValue("arrangingClubLogo"))
+                    {
+                        <li>
+                            <span>
+
+
+                                <img class="image image-full" src="@Umbraco.Media(CurrentPage.arrangingClubLogo.ToString()).GetResponsiveImageUrl(260,0)" alt="sss" />
+
+                            </span>
+                        </li>
+                    }
+
+                </ul>
+
+            </section>
+            <section class="8u">
+
+                <ul class="default">
+                    <li>@cp.name</li>
+                    <li>@cp.dojo</li>
+                    @if (cp.HasValue("email"))
+                    {
+                        <li><a href="mailto:@cp.email">@cp.email</a></li>
+                    }
+                    <li>@cp.rank</li>
+                </ul>
+            </section>
+        </div>
+    </section>
+
+    <section></section>
+</div>

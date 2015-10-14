@@ -37,8 +37,8 @@ namespace MarcBachraty.Controllers
             bannerItems.AddRange(umbracoEvents);
             bannerItems.AddRange(fbItems);
             bannerItems.AddRange(ybItems);
-            //bannerItems.OrderBy(x=>x.published);
-            bannerItems.Shuffle();
+            bannerItems.OrderBy(x=>x.published);
+            //bannerItems.Shuffle();
             return bannerItems;
         }
 
