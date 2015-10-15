@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
+   Layout = "~/Views/Shared/_Layout.cshtml"; 
     var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
@@ -74,37 +74,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar" class="4u">
-                <section>
-                    <header>
-                        <h2>@CurrentPage.rightHeader</h2>
-                    </header>
-	                @*<div class="row">
-						<h3>Next seminar: </h3> 
-						@{
-							foreach (var itm in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start").Take(1))
-							{
-								if (Convert.ToDateTime(itm.GetProperty("end").Value) > DateTime.Now)
-								{
-									<section class="4u">
-										<a class="image full" href="@itm.Url">
-											@if (itm.HasValue("image"))
-											{
-												<div class="clip"><img src="@Umbraco.Media(itm.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></div>
-											}
-											<header>
-												<h3>@Convert.ToDateTime(itm.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US")) @itm.GetProperty("subheader").Value</h3>
-											</header>
-											@Umbraco.Truncate(itm.GetProperty("bodyText").Value.ToString(), 40)
-										</a>
-									</section>
-								}
-							}
-						}
-</div>*@
-                </section>
-              
-            </div>
+            @{Html.RenderPartial("_RightColNormalSection");}
 
         </div>
     </div>

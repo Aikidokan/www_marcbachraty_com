@@ -1,17 +1,14 @@
 ﻿@inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
-    // If the editor has not explicitly provided the "Page title" property page
-    // then just show the name of the page otherwise show the provided title
+    Layout = "~/Views/Shared/_Layout.cshtml";
     dynamic pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
-    
+    System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+    customCulture.NumberFormat.NumberDecimalSeparator = ".";
+    System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 }
 @{ Html.RenderPartial("_banner"); }
-
-
-
 
 <!-- Main -->
 <div id="main">
@@ -52,13 +49,7 @@
 				</section>
 			</div>
             @Umbraco.RenderMacro("ContactCard", new { ContactParam = @CurrentPage.contact })
-			<!-- Sidebar -->
 			
-
-					
-
-
-
 		</div>
 	</div>
 </div>

@@ -370,7 +370,6 @@
     <Content Include="config\Lang\ru-RU.user.xml" />
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
-    <Content Include="css\custom.css" />
     <Content Include="css\font\fontawesome-webfont.svg" />
     <Content Include="css\images\highlight.png" />
     <Content Include="css\images\icons-contact.png" />
@@ -381,6 +380,7 @@
     <Content Include="css\images\toggle.svg" />
     <Content Include="css\lightbox.css" />
     <Content Include="css\skel-noscript.css" />
+    <Content Include="css\slider.css" />
     <Content Include="css\style-1000px.css" />
     <Content Include="css\style-desktop.css" />
     <Content Include="css\style-mobile.css" />
@@ -528,31 +528,25 @@
     <Content Include="App_Plugins\TheDashboard\package.manifest" />
     <Content Include="App_Plugins\YouTube\package.manifest" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
-    <Content Include="Views\shared\umbAbout.cshtml" />
     <Content Include="Views\shared\_seminarSlider.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\shared\_banner.cshtml" />
-    <Content Include="Views\shared\umbLatestNewsWidget.cshtml" />
-    <Content Include="Views\shared\umbNewsOverviewWidget.cshtml" />
     <Content Include="Views\shared\_Social.cshtml" />
-    <Content Include="Views\shared\umbTopNavigation.cshtml">
+    <Content Include="Views\shared\_TopNavigation.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\umbHomePage.cshtml" />
-    <Content Include="Views\umbLayout.cshtml">
+    <Content Include="Views\HomePage.cshtml" />
+    <Content Include="Views\shared\_Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\umbNewsItem.cshtml" />
-    <Content Include="Views\umbNewsOverview.cshtml" />
-    <Content Include="Views\umbTextPage.cshtml">
+    <Content Include="Views\TextPage.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\SeminarsOverview.cshtml" />
     <Content Include="Views\MacroPartials\ContactCard.cshtml" />
     <Content Include="Views\SingleSeminar.cshtml" />
     <Content Include="Views\MacroPartials\YoutubeClip.cshtml" />
-    <Content Include="Views\MediaPage.cshtml" />
     <Content Include="Views\MacroPartials\MediaGrid2.cshtml" />
     <Content Include="Views\MacroPartials\Gallerysubmenu.cshtml" />
     <Content Include="scripts\slick\config.rb" />
@@ -561,13 +555,6 @@
     <Content Include="scripts\slick\fonts\slick.woff" />
     <Content Include="scripts\slick\slick.scss" />
     <Content Include="Views\shared\_contactForm.cshtml" />
-    <Content Include="Views\Partials\umbAbout.cshtml" />
-    <Content Include="Views\Partials\umbFeatures.cshtml" />
-    <Content Include="Views\Partials\umbHomepageBanner.cshtml" />
-    <Content Include="Views\Partials\umbLatestNewsWidget.cshtml" />
-    <Content Include="Views\Partials\umbNewsOverviewWidget.cshtml" />
-    <Content Include="Views\Partials\umbSocial.cshtml" />
-    <Content Include="Views\Partials\umbTopNavigation.cshtml" />
     <Content Include="Views\Contact.cshtml" />
     <Content Include="slick\config.rb" />
     <Content Include="slick\fonts\slick.eot" />
@@ -586,6 +573,7 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="Views\shared\_RightColNormalSection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
