@@ -114,6 +114,11 @@
                     @if (cp.HasValue("email"))
                     {
                         <li><a href="mailto:@cp.email">@cp.email</a></li>
+                        foreach (var link in cp.dojoWebsite)
+                        {
+                            var linkTarget = (bool)link.newWindow ? "target=\"_blank\"" : "";
+                            <li>Web: <a href="@link.link" @Html.Raw(linkTarget)>@link.caption</a></li>
+                        }
                     }
                     <li>@cp.rank</li>
                 </ul>
