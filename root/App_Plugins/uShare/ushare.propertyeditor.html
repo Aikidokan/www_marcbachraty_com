@@ -1,0 +1,17 @@
+<div ng-controller="Governor.uShareController">
+    <div ng-show="model.value.enableFacebook">
+        <input id="uShareFacebook" type="checkbox" name="uShareFacebook" value="{{model.value.FacebookName}}" ng-model="model.value.selectedFacebook">
+        <label for="uShareFacebook">{{model.value.FacebookName}}</label><br>
+    </div>
+    <div ng-show="model.value.enableLinkedIn">
+        <input id="uShareLinkedIn" type="checkbox" name="uShareLinkedIn" value="{{model.value.LinkedInName}}" ng-model="model.value.selectedLinkedIn">
+        <label for="uShareLinkedIn">{{model.value.LinkedInName}}</label><br>
+    </div>
+    <div ng-show="model.value.enableTwitter">
+        <input id="uShareTwitter" type="checkbox" name="uShareTwitter" value="{{model.value.TwitterName}}" ng-model="model.value.selectedTwitter">
+        <label for="uShareTwitter">{{model.value.TwitterName}}</label><br>
+    </div>
+    <div class="btn-group">
+        <a class="btn" ng-click="share()">Share</a>
+    </div>
+</div>

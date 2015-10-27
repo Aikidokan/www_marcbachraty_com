@@ -1,47 +1,96 @@
-﻿ .responsive-container {
-        border-radius: 15px 50px 30px;
+﻿.slick-slide
+{
+width: 200px;
+} 
+
+.responsive-container {
+        /*border-radius: 15px;*/
         text-align: left;
-        height: 190px;
-        border: 3px solid #F5F5F5;
-        margin-left: 10px;
+        height: 250px;
+        border: 1px solid #CCC;
+        margin-left: 30px;
         cursor: pointer;
         z-index: 0;
-        background-color: #F7F7F7;
+        
     }
 
     .responsive-container a{
         display: block; 
+        padding: 0;
+        height: 230px;
+        color: #800000;
+    }
+
+    .responsive-container .link-banner {
+  text-decoration: none;
+        -moz-filter:grayscale(100%);
+  -o-filter: grayscale(100%);   
+  -webkit-filter: grayscale(70%);
+ 
+}
+
+
+
+    .responsive-container .link-banner:hover {
+        -webkit-filter: grayscale(0%);
+        filter: none;
+
+
+
+    }
+
+    .responsive-container  .bannercontent {
+     height: 100%;
+        width: 100%;
         padding: 1em;
-        height: 100%;
-        color: #777
-    }
+        color: #ffffff;
+        text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+        /*background-color: #FFF;*/
+	
+}
+.responsive-container:hover .bannercontent {
+	/*overflow-y: hidden;
+     max-height: 230px; 
 
-    .responsive-container a:hover {
-        text-decoration: none;
-    }
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);*/
+}
 
-    .bannerbg {
-        width: 330px;
-        height: 170px;
-        position: absolute;
-        z-index: 1;
-        background-repeat: no-repeat;
-        background-position: 70% 70%; 
-        opacity: 0.3;
-    }
-    
+
+   .bannerbg {
+    width: 200px;
+    height: 250px;
+    position: absolute;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: 90% 95%;
+    opacity: 0.3;
+}
 
     .responsive-container:hover .bannerbg {
         opacity: 1;
     }
     .banner-text {
         height: 100%;
+        
 
     }
+    .banner-text h3 {
+        font-size: 110%;
+        color: #ffffff;
+    }
+   
     .banner-text > span.footer {
         position: absolute;
     bottom: 10px;
-        font-size: 80%;
+        font-size: 90%;
         font-weight: 600;
-        padding-left: 25px;
+        /*padding-left: 25px;*/
+       
     }
+

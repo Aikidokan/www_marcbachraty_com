@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using HtmlAgilityPack;
+using umbraco.presentation.translation;
 
 namespace MarcBachraty.Classes.FB
 {
@@ -24,54 +29,33 @@ namespace MarcBachraty.Classes.FB
 
             var bannerItems = new List<BannerItem>();
 
-            foreach (var e in formatter.Feed.Items)
+            foreach (var item in formatter.Feed.Items)
             {
-                if (!e.Title.Text.StartsWith("Wallflux"))
+                if (!item.Title.Text.StartsWith("Wallflux"))
                 {
-                    BannerItem le = new BannerItem();
-                    le.title = e.Title.Text;
-                    le.content = new entryContent
+                    BannerItem bi = new BannerItem();
+                    bi.title = item.Title.Text;
+                    bi.content = new entryContent
                     {
-                        Value = ((TextSyndicationContent)e.Content).Text
+                        Value = ((TextSyndicationContent)item.Content).Text
                     };
 
-                    le.link = new entryLink
+                    bi.link = new entryLink
                     {
-                        href = e.Id,
+                        href = item.Id,
                         target = "_blank"
                     };
-                    le.updated = e.LastUpdatedTime.DateTime.ToShortDateString();
-                    le.published = "Published on facebook "+e.PublishDate.DateTime.ToShortDateString();
-                    le.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.FacebookPost);
-                    bannerItems.Add(le);
+           
+                    bi.MediaUrl = "";
+                    bi.updated = item.LastUpdatedTime.DateTime.ToShortDateString();
+                    bi.published = "Published: "+item.PublishDate.DateTime.ToShortDateString();
+                    bi.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.FacebookPost);
+                    bannerItems.Add(bi);
                 }
             }
             return bannerItems;
 
-            /* sparas, extrahera bilder
-            List<RssFeedItem> rssItems = new List<RssFeedItem>();
-                    Stream stream = e.Result;
-                    XmlReader response = XmlReader.Create(stream);
-                    SyndicationFeed feeds = SyndicationFeed.Load(response);
-                    foreach (SyndicationItem f in feeds.Items)
-                    {
-                        RssFeedItem rssItem = new RssFeedItem();
-
-                        rssItem.Description = f.Summary.Text;
-
- const string rx =  @"(?<=img\s+src\=[\x27\x22])(?<Url>[^\x27\x22]*)(?=[\x27\x22])"; 
-                        foreach (Match m in Regex.Matches(f.Summary.Text, rx, RegexOptions.IgnoreCase | RegexOptions.Multiline))
-                        {
-                            string src = m.Groups[1].Value;
-                            if (src.StartsWith("//")) // Google RSS has it
-                            {
-                                src = src.Replace("//", "http://");
-                            }
-
-                            rssItem.ImageLinks.Add(src);
-                        }
-            
-            */
+       
         }
         private DateTime ParseDate(string date)
         {
@@ -98,18 +82,21 @@ namespace MarcBachraty.Classes.FB
             {
                 var bi= new BannerItem();
                 bi.title = feed.Element(media+"group").Element(media + "title").Value+" - Video";
-                bi.MediaUrl =
-                    feed.Element(media + "group").Element(media + "thumbnail") != null
-                        ? feed.Element(media + "group").Element(media + "thumbnail").Attribute("url").Value
-                        : "";
-                bi.link = new entryLink()
+ bi.link = new entryLink()
                 {
                     href = feed.Element(atom + "link").Attribute("href").Value,
                     target = "_blank"
                 };
+                var imgUrl =
+                    feed.Element(media + "group").Element(media + "thumbnail") != null
+                        ? feed.Element(media + "group").Element(media + "thumbnail").Attribute("url").Value
+                        : "";
+               
+                bi.MediaUrl = imgUrl;
+               
                 bi.TypeOfContent = Enum.GetName(typeof(TypeOfContent), TypeOfContent.YoutubeMedia);
                 bi.published = feed.Element(media + "group").Element(media + "community").Element(media + "statistics").
-                    Attribute("views").Value+ " views on Youtube";
+                    Attribute("views").Value+ " views";
                 bannerItems.Add(bi);
             }
             return bannerItems;
@@ -118,3 +105,27 @@ namespace MarcBachraty.Classes.FB
         
     }
 }
+/* sparas, extrahera bilder
+       List<RssFeedItem> rssItems = new List<RssFeedItem>();
+               Stream stream = e.Result;
+               XmlReader response = XmlReader.Create(stream);
+               SyndicationFeed feeds = SyndicationFeed.Load(response);
+               foreach (SyndicationItem f in feeds.Items)
+               {
+                   RssFeedItem rssItem = new RssFeedItem();
+
+                   rssItem.Description = f.Summary.Text;
+
+const string rx =  @"(?<=img\s+src\=[\x27\x22])(?<Url>[^\x27\x22]*)(?=[\x27\x22])"; 
+                   foreach (Match m in Regex.Matches(f.Summary.Text, rx, RegexOptions.IgnoreCase | RegexOptions.Multiline))
+                   {
+                       string src = m.Groups[1].Value;
+                       if (src.StartsWith("//")) // Google RSS has it
+                       {
+                           src = src.Replace("//", "http://");
+                       }
+
+                       rssItem.ImageLinks.Add(src);
+                   }
+
+       */

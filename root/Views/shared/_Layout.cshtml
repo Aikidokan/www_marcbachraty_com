@@ -15,54 +15,111 @@
 }
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <title>@Umbraco.Field("title", "pageName") | @Umbraco.Field("siteName", recursive: true)</title>
 
-    <script src="/scripts/slimmage.settings.min.js"></script>
-    <script src="/scripts/slimmage.min.js"></script>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
+        <meta property="fb:app_id" content="1044111455613250" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="@n.NiceUrl" />
+        <meta property="og:title" content="@Umbraco.Field("title", "pageName")" />
+        <meta property="og:image" content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css"/>
-    <script type="text/javascript" src="~/slick/slick.min.js"></script>
-    <script src="~/js/skel.min.js"></script>
+        <script src="/scripts/slimmage.settings.min.js"></script>
+        <script src="/scripts/slimmage.min.js"></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css" />
+        <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
+        <script type="text/javascript" src="~/slick/slick.min.js"></script>
+        <script src="~/js/skel.min.js"></script>
     <script src="~/js/skel-panels.min.js"></script>
-    <script src="~/js/init.js"></script>
-    <script type="text/javascript"
-            src="//maps.googleapis.com/maps/api/js?key=AIzaSyDZwfcrvcF3090T14ESGxpmhL3IYY5b1TU&sensor=false">
+        <script src="~/js/init.js"></script>
+        <script type="text/javascript"
+                src="//maps.googleapis.com/maps/api/js?key=AIzaSyDZwfcrvcF3090T14ESGxpmhL3IYY5b1TU&sensor=false">
+        </script>
+        <noscript>
+            <link rel="stylesheet" href="@Url.Content("~/css/skel-noscript.css")" />
+            <link rel="stylesheet" href="@Url.Content("~/css/style.css")" />
+            <link rel="stylesheet" href="@Url.Content("~/css/style-desktop.css")" />
+        </noscript>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="@Url.Content("~/css/style.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/css/style-desktop.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/css/slider.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")" />
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', '@Umbraco.Field("gaCode", recursive: true)', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    
+    @*    <script>
+
     </script>
-    <noscript>
-        <link rel="stylesheet" href="@Url.Content("~/css/skel-noscript.css")"/>
-        <link rel="stylesheet" href="@Url.Content("~/css/style.css")"/>
-        <link rel="stylesheet" href="@Url.Content("~/css/style-desktop.css")"/>
-    </noscript>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="@Url.Content("~/css/style.css")"/>
-    <link rel="stylesheet" href="@Url.Content("~/css/style-desktop.css")"/>
-    <link rel="stylesheet" href="@Url.Content("~/css/slider.css")"/>
-
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments);
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m);
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', '@Umbraco.Field("gaCode", recursive: true)', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-</head>
+       /* make the API call */
+            FB.api(
+                "/me/objects/article",
+                "POST",
+                {
+                    "object": "{\"fb:app_id\":\"1044111455613250\",\"og:type\":\"article\",\"og:url\":\"@n.NiceUrl\",\"og:title\":\"@Umbraco.Field("title", "pageName")\",\"og:image\":\"https:\\\/\\\/s-static.ak.fbcdn.net\\\/images\\\/devsite\\\/attachment_blank.png\"}"
+                },
+                function (response) {
+                    if (response && !response.error) {
+                        /* handle the result */
+                    }
+                }
+            );
+            /* make the API call */
+            FB.api(
+                "/me/objects/article",
+                function (response) {
+                    if (response && !response.error) {
+                        /* handle the result */
+                    }
+                }
+            );
+            /* make the API call */
+            FB.api(
+                "/id_from_create_call",
+                "POST",
+                {
+                    "object": "{\"fb:app_id\":\"302184056577324\",\"og:type\":\"article\",\"og:url\":\"Put your own URL to the object here\",\"og:title\":\"Sample Article\",\"og:image\":\"https:\\\/\\\/s-static.ak.fbcdn.net\\\/images\\\/devsite\\\/attachment_blank.png\"}"
+                },
+                function (response) {
+                    if (response && !response.error) {
+                        /* handle the result */
+                    }
+                }
+            );
+            /* make the API call */
+            FB.api(
+                "/id_from_create_call",
+                "DELETE",
+                function (response) {
+                    if (response && !response.error) {
+                        /* handle the result */
+                    }
+                }
+            )
+    </script>;*@
+    </head>
 <body class="@startpage">
 
 @RenderBody()

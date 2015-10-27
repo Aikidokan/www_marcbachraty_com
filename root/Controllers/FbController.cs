@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -31,15 +32,17 @@ namespace MarcBachraty.Controllers
             List<BannerItem> bannerItems = new List<BannerItem>();
             var fbItems = cacheHlp.GetFbItems();
             var ybItems = cacheHlp.GetYbItems();
-            //var reader = new FeedReader();
-            //var ybItems = reader.YoutubeItems();
+            
             List<BannerItem> umbracoEvents = UmbracoEvents();
-            bannerItems.AddRange(umbracoEvents);
-            bannerItems.AddRange(fbItems);
-            bannerItems.AddRange(ybItems);
-            bannerItems.OrderBy(x=>x.published);
-            //bannerItems.Shuffle();
-            return bannerItems;
+            fbItems.AddRange(ybItems);
+            fbItems.Shuffle();
+            umbracoEvents.OrderBy(x => x.StartDateTime);
+            var rnd = new Random();
+            foreach (var x in fbItems)
+            {
+                umbracoEvents.Insert(rnd.Next(1,umbracoEvents.Count-1),x );
+            }
+            return umbracoEvents;
         }
 
         private List<BannerItem> UmbracoEvents()
@@ -65,6 +68,25 @@ namespace MarcBachraty.Controllers
                             href = itm.Url,
                             target = "_self"
                         };
+                        var imgUrl = "";
+                        if (itm.HasProperty("seminarBannerImage") && itm.HasValue("seminarBannerImage"))
+                        {
+                            var id = Umbraco.TypedMedia(itm.GetPropertyValue("seminarBannerImage")).Id;
+                            var img = Umbraco.TypedMedia(id);
+                            imgUrl = img.Url;
+                        }else if (itm.HasProperty("image") && itm.HasValue("image"))
+                        {
+                            var id = Umbraco.TypedMedia(itm.GetPropertyValue("image")).Id;
+                            var img = Umbraco.TypedMedia(id);
+                            imgUrl = img.Url;
+                        }
+                        else
+                        {
+                            imgUrl = "/images/assets/fallback.jpg";
+                        }
+                       
+
+                        bi.MediaUrl = imgUrl;
                         bi.published = bi.StartDateTime = "Seminar starts "+itm.GetProperty("start").Value.ToString().ToDate().ToShortDateString();
 
                         bi.updated = itm.UpdateDate.ToShortDateString();

@@ -1,0 +1,56 @@
+{
+    propertyEditors: [
+        {
+        alias: "Governor.uShare",
+        name: "uShare",
+        editor: {
+        view: "~/App_Plugins/uShare/ushare.propertyeditor.html"
+        },
+        prevalues: {
+            fields: [
+				{
+					label: "Enable Facebook",
+					description: "Share a content page URL on behalf of a Facebook page.",
+					key: "enableFacebook",
+					view: "boolean"
+				},
+				{
+					label: "Enable LinkedIn",
+					description: "Share a content page URL on behalf of a LinkedIn user profile.",
+					key: "enableLinkedIn",
+					view: "boolean"
+				},
+				{
+					label: "Enable Twitter",
+					description: "Share a content page URL on behalf of a Twitter user.",
+					key: "enableTwitter",
+					view: "boolean"
+				},
+				{
+					label: "Activate Facebook by default",
+					description: "If Facebook should be active by default.",
+					key: "activateFacebook",
+					view: "boolean"
+				},
+				{
+					label: "Activate LinkedIn by default",
+					description: "If LinkedIn should be active by default.",
+					key: "activateLinkedIn",
+					view: "boolean"
+				},
+				{
+					label: "Activate Twitter by default",
+					description: "If Twitter should be active by default.",
+					key: "activateTwitter",
+					view: "boolean"
+				}
+			]
+        }
+        }
+    ]
+    ,
+    javascript: [
+        "~/App_Plugins/uShare/ushare.controller.js",
+		"~/App_Plugins/uShare/ushare.resources.js"
+    ]
+}

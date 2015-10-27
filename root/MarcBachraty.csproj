@@ -370,6 +370,8 @@
     <Content Include="config\Lang\ru-RU.user.xml" />
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\filters.svg" />
     <Content Include="css\font\fontawesome-webfont.svg" />
     <Content Include="css\images\highlight.png" />
     <Content Include="css\images\icons-contact.png" />
@@ -386,8 +388,10 @@
     <Content Include="css\style-mobile.css" />
     <Content Include="css\style.css" />
     <Content Include="default.aspx" />
+    <Content Include="fb\app.html" />
     <Content Include="Global.asax" />
     <Content Include="images\assets\FacebookPost.png" />
+    <Content Include="images\assets\fallback.jpg" />
     <Content Include="images\assets\UmbracoEvent.png" />
     <Content Include="images\assets\YoutubeMedia.png" />
     <Content Include="images\header_marc_throws.jpg" />
