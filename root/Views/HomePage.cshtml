@@ -1,0 +1,98 @@
+﻿@inherits UmbracoTemplatePage
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ Html.RenderPartial("_banner"); }
+<svg:filter id="grayscale">
+        <svg:feColorMatrix values="0.3333 0.3333 0.3333 0 0
+                                 0.3333 0.3333 0.3333 0 0
+                                 0.3333 0.3333 0.3333 0 0
+                                 0      0      0      1 0" />
+    </svg:filter>
+<script>
+        $.getJSON("/Umbraco/Api/FB/GetGroupFeed", function(data) {
+
+    if ($(data) !== null) {
+        $('#content-slider-horizontally').append('<div class="slider responsive">');
+        $(data).each(function(index, item) {
+            var anchor = '';
+            switch (item.TypeOfContent) {
+            case 'FacebookPost':
+                anchor = '<a class="link-banner" style="background-clip: content-box;background-image: url(' + item.MediaUrl + ');' +
+                    'background-size: 60%;background-repeat: no-repeat;background-position: 50% 50%;" ' +
+                    'target="' + item.link.target + '" href="' + item.link.href + '">' + '<div class="bannerbg" style="background-image: url(/images/assets/' + item.TypeOfContent + '.png);"></div>';
+                break;
+                case 'YoutubeMedia':
+                    anchor = '<a class="link-banner" style="background-image: url(' + item.MediaUrl + ');' +
+                   'background-size: 100%;background-repeat: no-repeat;background-position: 50% 50%;" ' +
+                   'target="' + item.link.target + '" href="' + item.link.href + '">' + '<div class="bannerbg" style="background-image: url(/images/assets/' + item.TypeOfContent + '.png);"></div>';
+                    break;
+            case "UmbracoEvent":
+                anchor = '<a class="link-banner" style="background-image: url(' + item.MediaUrl + ');' +
+                    'background-size    :100%; background-repeat: no-repeat;background-position: 50% 50%;" ' +
+                    'target="' + item.link.target + '" href="' + item.link.href + '">' + '<div class="bannerbg"></div>';
+                break;
+            default:
+                anchor = '<a target="' + item.link.target + '" href="' + item.link.href + '">'
+                    + item.TypeOfContent + '<div class="bannerbg" style="background-image: url(/images/assets/' + item.TypeOfContent + '.png);"></div>';
+            }
+            $('.responsive').append('<div class="responsive-container">' +
+                anchor +
+                
+                '<div class="bannercontent"><div class="banner-text"><h3>' + item.title + '</h3>' +
+                '<span class="footer">' + item.published + '</span>' +
+                '</div></div></a></div>');
+
+        });
+        $('.slider').slick({
+            dots: false,
+            //infinite: false,
+            speed: 600,
+            slidesToShow: 4,
+            slidesToScroll: 2,
+            autoplay: true,
+            accessibility: true,
+            infinite: true,
+            //swipe: true,
+            swipeToSlide: true,
+            autoplaySpeed: 3000,
+            cssEase: 'ease',
+            pauseOnHover: true,
+            swipe: true,
+            touchMove: true,
+            variableWidth: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true
+
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+
+            ]
+        });
+        
+    }
+        });
+</script>
+<div id="main">
+    <div id="content-slider-horizontally" class="container">
+        
+    </div>
+</div>
+@{   Html.RenderPartial("_startSpots"); }

@@ -2,10 +2,9 @@
 @using YouTube.Models
 @inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
+Layout = "~/Views/Shared/_Layout.cshtml"; 
 
-    // If the editor has not explicitly provided the "Page title" property page
-    // then just show the name of the page otherwise show the provided title
+  
     var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;

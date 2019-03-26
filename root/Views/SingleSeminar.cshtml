@@ -1,17 +1,14 @@
 ﻿@inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
-    // If the editor has not explicitly provided the "Page title" property page
-    // then just show the name of the page otherwise show the provided title
+    Layout = "~/Views/Shared/_Layout.cshtml";
     dynamic pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
-    
+    System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+    customCulture.NumberFormat.NumberDecimalSeparator = ".";
+    System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 }
 @{ Html.RenderPartial("_banner"); }
-
-
-
 
 <!-- Main -->
 <div id="main">
@@ -19,46 +16,48 @@
 		<div class="row">
 
 			<!-- Content -->
-			<div id="content" class="8u skel-cell-important">
-				<section>
-					<header>
-						<h2>@pageTitle</h2>
-                        
-					</header>
-                    
-					<ul class="meta"><li>@CurrentPage.SubHeader</li>
-						<li class="timestamp">@CurrentPage.start.ToString("f")</li>
-					</ul>
-					@if (CurrentPage.HasValue("image"))
-                    {
-                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
-                        var spotimg2 = Umbraco.TypedMedia((int)id);
-                        <img src="@spotimg2.Url" alt="@CurrentPage.Name" style="width: 30%" />
-					}
-					@if (CurrentPage.HasValue("seminarPoster"))
-                    {
-                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("seminarPoster")).Id;
-                        var media = Umbraco.TypedMedia((int)id);
-						<p>Download poster here: <a href="@media.Url">Poster</a></p>
-					}
-					@if (CurrentPage.HasValue("additionalInfo"))
-                    {
-                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("additionalInfo")).Id;
-                        var media = Umbraco.TypedMedia((int)id);
-                        <p>Download additional info here: <a href="@media.Url">Poster</a></p>
-					}
+		    <div id="content" class="8u skel-cell-important">
+               
+		        <section>
+		            <header>
+		                <h2>@pageTitle</h2>
 
-					@CurrentPage.BodyText
-				</section>
-			</div>
+		            </header>
+                    <div style="padding-bottom: 10px;" class="fb-like"
+                         data-share="true"
+                         data-width="450"
+                         data-show-faces="true">
+                    </div>
+		            <ul class="meta"><li>@CurrentPage.SubHeader</li>
+		                <li class="timestamp">@CurrentPage.start.ToString("f")</li>
+		            </ul>
+		            @if (CurrentPage.HasValue("image"))
+		            {
+		                var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
+		                var spotimg2 = Umbraco.TypedMedia((int) id);
+		                <img src="@spotimg2.Url" alt="@CurrentPage.Name" style="width: 30%"/>
+		            }
+		            @if (CurrentPage.HasValue("seminarPoster"))
+		            {
+		                var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("seminarPoster")).Id;
+		                var media = Umbraco.TypedMedia((int) id);
+		                <p>Download poster here: <a href="@media.Url">Poster</a>
+		                </p>
+		            }
+		            @if (CurrentPage.HasValue("additionalInfo"))
+		            {
+		                var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("additionalInfo")).Id;
+		                var media = Umbraco.TypedMedia((int) id);
+		                <p>Download additional info here: <a href="@media.Url">Poster</a>
+		                </p>
+		            }
+
+		            @CurrentPage.BodyText
+		        </section>
+
+		    </div>
             @Umbraco.RenderMacro("ContactCard", new { ContactParam = @CurrentPage.contact })
-			<!-- Sidebar -->
 			
-
-					
-
-
-
 		</div>
 	</div>
 </div>
