@@ -87,8 +87,20 @@
                 <div class="spot-image" style="position: relative">
                     @if (CurrentPage.HasValue("spot2Image"))
                     {
-                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("spot2Image")).Id;
-                        var spotimg2 = Umbraco.TypedMedia((int) id);
+                        //var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("spot2Image")).Id;
+                        IPublishedContent mediaNode;
+                        var imgUrl = "";
+
+                        try
+                        {
+                            mediaNode = CurrentPage.GetPropertyValue<IPublishedContent>("spot2Image");
+                        }
+                        catch
+                        {
+
+                            mediaNode = Umbraco.TypedMedia(CurrentPage.GetProperty("spot2Image").DataValue);
+                        }
+                        var spotimg2 = mediaNode;
                         <img src="@spotimg2.Url" alt="@CurrentPage.headerSpot2"/>
                     }
                 </div>
@@ -103,10 +115,20 @@
                 <div class="spot-image" style="position: relative">
                     @if (CurrentPage.HasValue("spot3Image"))
                     {
-                        var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("spot3Image")).Id;
-                        var spotimg3 = Umbraco.TypedMedia((int) id);
-                        @*<img src="@spotimg3.GetCropUrl(293)" alt="@CurrentPage.headerSpot3" />*@
-                        <img src="@spotimg3.Url" alt="@CurrentPage.headerSpot3"/>
+                        IPublishedContent mediaNode;
+                        var imgUrl = "";
+
+                        try
+                        {
+                            mediaNode = CurrentPage.GetPropertyValue<IPublishedContent>("spot3Image");
+                        }
+                        catch
+                        {
+
+                            mediaNode = Umbraco.TypedMedia(CurrentPage.GetProperty("spot3Image").DataValue);
+                        }
+                        var spot3Image = mediaNode;
+                        <img src="@spot3Image.Url" alt="@CurrentPage.headerSpot2"/>
                     }
                 </div>
                 <h3>@CurrentPage.headerSpot3</h3>

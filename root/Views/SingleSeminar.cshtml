@@ -33,8 +33,18 @@
 		            </ul>
 		            @if (CurrentPage.HasValue("image"))
 		            {
-		                var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
-		                var spotimg2 = Umbraco.TypedMedia((int) id);
+			            IPublishedContent mediaNode;
+			            var imgUrl = "";
+
+			            try
+			            {
+				            mediaNode = CurrentPage.GetPropertyValue<IPublishedContent>("image");
+			            }
+			            catch
+			            {
+				            mediaNode = Umbraco.TypedMedia(CurrentPage.GetProperty("image").DataValue);
+			            }
+			            var spotimg2 = mediaNode;
 		                <img src="@spotimg2.Url" alt="@CurrentPage.Name" style="width: 30%"/>
 		            }
 		            @if (CurrentPage.HasValue("seminarPoster"))

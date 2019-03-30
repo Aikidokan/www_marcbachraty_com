@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcBachraty", "MarcBachraty.csproj", "{02193F18-897E-484D-86A4-B7AC28BF7FAC}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{810457
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marc.Web-2.0", "..\Marc.Web-2.0\Marc.Web-2.0.csproj", "{BED1F17E-6952-4014-AE3E-0F74DD28B61C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,8 +24,15 @@ Global
 		{02193F18-897E-484D-86A4-B7AC28BF7FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02193F18-897E-484D-86A4-B7AC28BF7FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02193F18-897E-484D-86A4-B7AC28BF7FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED1F17E-6952-4014-AE3E-0F74DD28B61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED1F17E-6952-4014-AE3E-0F74DD28B61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED1F17E-6952-4014-AE3E-0F74DD28B61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED1F17E-6952-4014-AE3E-0F74DD28B61C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF24BA91-4FDB-4FED-8C8E-E1EA8D92B27B}
 	EndGlobalSection
 EndGlobal

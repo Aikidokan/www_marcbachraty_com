@@ -141,7 +141,7 @@
                     var helper = new UmbracoHelper(UmbracoContext.Current);
 
                     IPublishedContent root = helper.Content(1068);
-                    IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
+                    IPublishedContent eventRoot = helper.Content(root.GetProperty("seminars").DataValue);
                     foreach (var item in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start"))
                     {
                         if (Convert.ToDateTime(item.GetProperty("end").Value) > DateTime.Now)
@@ -154,10 +154,21 @@
                                             {
                                                 <div class="inner-seminar-top-image">
                                                     @{
-                                                        var id = Umbraco.TypedMedia(item.GetPropertyValue("image")).Id;
-                                                        var spotimg2 = Umbraco.TypedMedia((int)id);
+                                                        IPublishedContent mediaNode;
+                                                        var imgUrl = "";
+
+                                                        try
+                                                        {
+                                                            mediaNode = item.GetPropertyValue<IPublishedContent>("image");
+                                                        }
+                                                        catch
+                                                        {
+
+                                                            mediaNode = Umbraco.TypedMedia(item.GetProperty("image").DataValue);
+                                                        }
+                                                        var img = mediaNode;
                                                     }
-                                                    <img src="@spotimg2.GetResponsiveImageUrl(170, 0)" alt="" />
+                                                    <img src="@img.GetResponsiveImageUrl(170, 0)" alt="" />
                                                 </div>  }
                                             <div class="inner-seminar-description">
                                                 <h3 class="tm-popular-item-title">@item.GetProperty("SubHeader").Value </h3>
