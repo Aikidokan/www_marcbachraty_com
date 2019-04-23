@@ -1,13 +1,16 @@
 ﻿@using System.Globalization
+@using YouTube.Models
 @inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
+Layout = "~/Views/Shared/_Layout.cshtml"; 
 
-    // If the editor has not explicitly provided the "Page title" property page
-    // then just show the name of the page otherwise show the provided title
+  
     var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
+    
+
+   
 }
 	@{ Html.RenderPartial("_banner"); }
 
@@ -18,7 +21,7 @@
         <div class="row">
 
             <!-- Content -->
-            <div id="content" class="12u skel-cell-important">
+            <div id="content" class="8u skel-cell-important">
                 <section>
                     <header>
                         <h2>@pageTitle</h2>
@@ -45,7 +48,28 @@
                        
 </section>
                     </div>
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <section>
+                    <header>
+                        <h2>Videos</h2>
+                    </header>
+                    <div class="row">
+                        <section class="6u">
+                            <ul class="default">
+                                @foreach (var typedVideo in Model.Content.GetPropertyValue<YouTube>("youtubeChannel"))
+                                {
+                                    <li>
+                                        @Html.Raw(typedVideo.Player.EmbedHtml)<br/>
+                                       @typedVideo.Snippet.Title, Views: @typedVideo.Statistics.ViewCount
+                                   
+                                </li>
+                                }
+                                </ul></section>
+                    </div>
+                </section>
 
+            </div>
             
 
         </div>
