@@ -62,12 +62,60 @@
 		                </p>
 		            }
 
-		            @CurrentPage.BodyText
-		        </section>
+					@CurrentPage.BodyText
+				</section>
+			</div>
 
-		    </div>
-            @Umbraco.RenderMacro("ContactCard", new { ContactParam = @CurrentPage.contact })
+			<!-- Sidebar -->
+			<div id="sidebar" class="4u" style="background-color: #f1f1f1;">
+				<section>
+					<header>
+					    <h2 class="margin-top">Location</h2>
+                       
+                                <div class="map-canvas" id="map-canvas"></div>
+
+                         
+						
+					</header>
+                    
+				</section>
+				<section>
+					<header>
+						<h2>Organizer</h2>@CurrentPage.arrangingClub
+					</header>
+					<div class="row">
+						<section class="4u">
+							<ul class="default">
+								@if (CurrentPage.HasValue("arrangingClubLogo"))
+								{
+									<li><span>
+                                   
+										    
+                                            <img class="image image-full" src="@Umbraco.Media(CurrentPage.arrangingClubLogo.ToString()).GetResponsiveImageUrl(260,0)" alt="sss" />
+                                    
+									    </span></li>
+								}
+
+							</ul>
+
+						</section>
+						<section class="8u">@Umbraco.RenderMacro("ContactCard", new {ContactParam = @CurrentPage.contact})
+
+						</section>
+					</div>
+				</section>
+               
+				<section>
+                    
+                     
+                   
 			
+	
+				</section>
+			</div>
+
+
+
 		</div>
 	</div>
 </div>
