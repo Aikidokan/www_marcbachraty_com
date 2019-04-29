@@ -1,0 +1,40 @@
+﻿@inherits UmbracoTemplatePage
+<div id="sidebar" class="4u">
+    <section>
+        <header>
+            <h2>@CurrentPage.rightHeader</h2>
+        </header>
+        <div class="row">
+            @CurrentPage.rightText
+            @{var multiUrlPickerDyn1 = CurrentPage.bulletlist1;
+                if (multiUrlPickerDyn1.Any())
+                {
+                    <section class="6u">
+                        <ul class="default">
+                            @foreach (var item in multiUrlPickerDyn1)
+                            {
+                                <li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
+                            }
+                        </ul>
+                    </section>
+                }
+            }
+            @{var multiUrlPickerDyn2 = CurrentPage.bulletlist2;
+                if (multiUrlPickerDyn2.Any())
+                {
+                    <section class="6u">
+                        <ul class="default">
+                            @foreach (var item in multiUrlPickerDyn2)
+                            {
+                                <li><a href="@item.Url" target="@item.Target">@item.Name</a></li>
+                            }
+                        </ul>
+                    </section>
+                }
+            }
+        </div>
+    </section>
+    <section>
+        
+    </section>
+</div>

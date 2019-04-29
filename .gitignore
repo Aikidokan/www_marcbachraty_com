@@ -203,3 +203,6 @@ Cached/
 # Make sure to include details from VisualStudio.gitignore BEFORE this
 !**/App_Data/[Pp]ackages/
 !**/[Uu]mbraco/[Dd]eveloper/[Pp]ackages
+/root/.vs/MarcBachraty
+/root/App_Data/cache
+/root/App_Data/NuGetBackup
