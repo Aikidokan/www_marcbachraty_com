@@ -1,111 +1,191 @@
 ﻿@using System.Globalization
 @inherits UmbracoTemplatePage
 @{
-    Layout = "umbLayout.cshtml";
+   Layout = "~/Views/Shared/_Layout.cshtml"; 
     var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
         ? CurrentPage.Name
         : CurrentPage.Title;
 }
 @{ Html.RenderPartial("_banner"); }
+
+<script>
+    $(document).ready(function () {
+        var heights = $(".panel").map(function () {
+            return $(this).height();
+        }).get(),
+
+        maxHeight = Math.max.apply(null, heights);
+
+        $(".panel").height(maxHeight);
+    });
+</script>
 <style>
-    .clearfix {
-  overflow: auto;
+    .panel{margin-bottom:80px;}
+    .inner-seminar {
+        
+        height:100%;
+        
+        border: 10px solid #F7F5F5;
+        background-color: #FFF;
+        border-radius: 15px;
+    }
+    .inner-seminar:hover {
+        background-color: #F7F5F5;
+    }
+    .read-more-container {
+    width: 100px;
+    height: 100px;
+    background-color: #F7F5F5;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    left: 35%;
+    bottom: -50px;
 }
+    .read-more-container span{color:#ccc;}
+    .panel a:hover {
+        text-decoration: none;
+    }
+    .panel .inner-seminar:hover > .read-more-container span {
+        color: #999;
+    }
+    .panel img{max-width: 100%}
+
+    .read-more-container span{
+    font-size: 18px;
+    border: 2px solid #a9a9a9;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    padding-top: 8px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+        text-align: center;
+}
+    .inner-seminar-top-image {
+        height: 30%;
+        overflow: hidden;
+       
+    }
+    .inner-seminar-top-image img {
+        position: relative;
+        top:-50px
+
+    }
+    .inner-seminar-description {
+        padding: 0 15px;
+        overflow: hidden;
+        height: 67%;
+    }
+
+    .tm-popular-item-hr {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+    hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+        padding: 0;
+}
+    .panel .inner-seminar:hover > .inner-seminar-description h3 {
+    color: #c79c60;
+}
+    .tm-popular-item-title {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 0;
+        color: rgb(174,174,174);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+        text-align: center;
+}
+
 </style>
 <div id="main">
-    <div class="container">
-        <div class="row">
+    <section>
+        <div class="container">
+            <header>
+                <h2>@pageTitle</h2>
+                @if (CurrentPage.HasValue("image"))
+                {
+                    var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
+                    var spotimg2 = Umbraco.TypedMedia((int)id);
+                    <span class="image image-full">
+                        <img src="@spotimg2.Url" alt="@CurrentPage.Name" />
 
-            <div id="content" class="8u skel-cell-important">
-                <section>
-                    <header>
-                        <h2>@pageTitle</h2>
-                        @if (CurrentPage.HasValue("image"))
+                    </span>
+                }
+            </header>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+
+                @{
+                    var helper = new UmbracoHelper(UmbracoContext.Current);
+
+                    IPublishedContent root = helper.Content(1068);
+                    IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
+                    foreach (var item in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start"))
+                    {
+                        if (Convert.ToDateTime(item.GetProperty("end").Value) > DateTime.Now)
                         {
-                            var id = Umbraco.TypedMedia(CurrentPage.GetPropertyValue("image")).Id;
-                            var spotimg2 = Umbraco.TypedMedia((int)id);
-                            <span class="image image-full">
-                                <img src="@spotimg2.Url" alt="@CurrentPage.Name" />
-                                
-                            </span>
-                        }
-
-                    </header>
-                    <article>
-                        @{
-                            var helper = new UmbracoHelper(UmbracoContext.Current);
-
-                            IPublishedContent root = helper.Content(1068);
-                            IPublishedContent eventRoot = helper.Content(Convert.ToInt32(root.GetProperty("seminars").Value));
-                            foreach (var item in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start"))
-                            {
-                                if (Convert.ToDateTime(item.GetProperty("end").Value) > DateTime.Now)
-                                {
-                                    <section>
-                                           
-                                        <h3><a href="@item.Url">@item.GetProperty("SubHeader").Value</a></h3>
-                                        
-                                        <ul class="meta">
-                                            <li class="timestamp">@Convert.ToDateTime(item.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US"))</li>
-                                        </ul>
-                                        <div class="clearfix">
+                            
+                                <div class="col-xs-6 col-md-4 panel">
+                                    <a href="@item.Url">
+                                        <div class="inner-seminar">
                                             @if (item.HasValue("image"))
                                             {
-                                                <a href="@item.Url">
-                                                    <img class="image left" src="@Umbraco.Media(item.GetPropertyValue("image").ToString()).GetResponsiveImageUrl(170, 0)" alt="" />
-                                                </a>
-                                            }
-                                            @Umbraco.Truncate(item.GetProperty("BodyText").Value.ToString(), 150)
-                                            @if (item.HasValue("seminarPoster"))
-                                            {
-                                                var id = Umbraco.TypedMedia(item.GetPropertyValue("seminarPoster")).Id;
-                                                var media = Umbraco.TypedMedia((int)id);
-                                                <p>Seminarposter here: <a href="@media.Url">Poster</a></p>
-                                            }
-                                            <a href="@item.Url" class="button">Continue Reading</a>
+                                                <div class="inner-seminar-top-image">
+                                                    @{
+                                                        var id = Umbraco.TypedMedia(item.GetPropertyValue("image")).Id;
+                                                        var spotimg2 = Umbraco.TypedMedia((int)id);
+                                                    }
+                                                    <img src="@spotimg2.GetResponsiveImageUrl(170, 0)" alt="" />
+                                                </div>  }
+                                            <div class="inner-seminar-description">
+                                                <h3 class="tm-popular-item-title">@item.GetProperty("SubHeader").Value </h3>
+                                                <hr class="tm-popular-item-hr"/>
+                                                <p>
+                                                    @Umbraco.Truncate(item.GetProperty("BodyText").Value.ToString(), 100)
+                                                </p>
+
+
+
+
+                                                @Convert.ToDateTime(item.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US"))
+
+
+                                                <div class="read-more-container">
+                                                    <span>Read more</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </section>
-                                }
-                            }
+                                    </a>
+                                </div>
+                           
+
                         }
-                    </article>
-                    <!-- /Content -->
-                </section>
+                    }
+                }
             </div>
-
-            <!-- Sidebar -->
-            <div id="sidebar" class="4u">
-                <section>
-                    <header>
-                        <h2>@CurrentPage.rightHeader</h2>
-                    </header>
-	                @*<div class="row">
-						<h3>Next seminar: </h3> 
-						@{
-							foreach (var itm in eventRoot.Children.Where("Visible").Where("end >= DateTime.Now.Date").OrderBy("start").Take(1))
-							{
-								if (Convert.ToDateTime(itm.GetProperty("end").Value) > DateTime.Now)
-								{
-									<section class="4u">
-										<a class="image full" href="@itm.Url">
-											@if (itm.HasValue("image"))
-											{
-												<div class="clip"><img src="@Umbraco.Media(itm.GetProperty("image").Value.ToString()).umbracoFile" alt="" /></div>
-											}
-											<header>
-												<h3>@Convert.ToDateTime(itm.GetProperty("start").Value).ToString("f", CultureInfo.CreateSpecificCulture("en-US")) @itm.GetProperty("subheader").Value</h3>
-											</header>
-											@Umbraco.Truncate(itm.GetProperty("bodyText").Value.ToString(), 40)
-										</a>
-									</section>
-								}
-							}
-						}
-</div>*@
-                </section>
-              
-            </div>
-
         </div>
-    </div>
+
+    </section>
 </div>

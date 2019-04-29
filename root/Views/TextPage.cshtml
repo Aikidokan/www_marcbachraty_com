@@ -1,0 +1,30 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var pageTitle = string.IsNullOrWhiteSpace(CurrentPage.Title)
+        ? CurrentPage.Name
+        : CurrentPage.Title;
+}
+@{ Html.RenderPartial("_banner"); }
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <!-- Content -->
+            <div id="content" class="8u skel-cell-important">
+                <section>
+                    <header>
+                        <h2>@pageTitle</h2>
+                        <span class="byline">@CurrentPage.byline</span>         
+                    </header>
+                    @if (CurrentPage.HasValue("Image"))
+                    {
+                        <img class="image left" src="@Umbraco.Media(CurrentPage.Image.ToString()).GetResponsiveImageUrl(170, 0)" alt="sss"/>
+                    }
+                    @CurrentPage.bodyText
+                </section>
+            </div>
+            <!-- Sidebar -->
+            @{ Html.RenderPartial("_RightColNormalSection"); }
+        </div>
+    </div>
+</div>
