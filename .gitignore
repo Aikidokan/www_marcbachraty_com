@@ -213,3 +213,4 @@ FakesAssemblies/
 # Ignore the Models Builder models out of date flag
 **/App_Data/Models/ood.flag
 /root/.vs/MarcBachraty/v15/Server/sqlite3
+/root/.vs/MarcBachraty/v16/Server/sqlite3
