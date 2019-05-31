@@ -632,7 +632,7 @@
 	function _fnAddTr( oSettings, trs )
 	{
 		// Allow an individual node to be passed in
-		if ( ! trs instanceof $ ) {
+		if ( !( trs instanceof $) ) {
 			trs = $(trs);
 		}
 	
@@ -6912,7 +6912,7 @@
 	 */
 	DataTable.Api = _Api = function ( context, data )
 	{
-		if ( ! this instanceof _Api ) {
+		if ( !( this instanceof _Api) ) {
 			throw 'DT API must be constructed as a new object';
 			// or should it do the 'new' for the caller
 			// return new _Api.apply( this, arguments );
@@ -7141,7 +7141,7 @@
 	
 	 _Api.extend = function ( scope, obj, ext )
 	{
-		if ( ! obj instanceof _Api ) {
+		if ( !( obj instanceof _Api) ) {
 			return;
 		}
 	
